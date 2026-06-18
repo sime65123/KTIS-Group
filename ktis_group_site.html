@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KTIS Group | Import-Export &amp; Commerce Général</title>
+<meta name="description" content="KTIS Group — Spécialiste du commerce international. Import-Export, Commerce Général, Solutions Énergétiques. Basé à Douala, Cameroun. Devis gratuit sous 24h."/>
+<script>
+  if (localStorage.getItem('ktis-theme') === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+@font-face { font-family:'Century Gothic'; src:local('Century Gothic'),local('CenturyGothic'); font-weight:400; }
+@font-face { font-family:'Century Gothic'; src:local('Century Gothic Bold'),local('CenturyGothic-Bold'); font-weight:700; }
+
+:root {
+  --bg:#0d0f14; --bg2:#111318; --surface:#161921; --surface2:#1c2030;
+  --border:#252a3a; --border2:#2e3550;
+  --electric:#1a8fff; --electric2:#00c6ff;
+  --orange:#e86c2e; --teal:#0ca89a; --green:#22c55e;
+  --text:#e8ecf4; --text2:#8a93ad; --text3:#545e7a; --white:#ffffff;
+  --font-display:'Century Gothic','Trebuchet MS','Arial Narrow',sans-serif;
+  --font-body:'Century Gothic','Trebuchet MS','Arial Narrow',sans-serif;
+  --font-mono:'JetBrains Mono','Courier New',monospace;
+}
+
+/* ── THEME CLAIR ── */
+[data-theme="light"]{
+  --bg:#f5f7fb; --bg2:#ffffff; --surface:#ffffff; --surface2:#eef1f8;
+  --border:#dde2ee; --border2:#c7cee0;
+  --electric:#0066d6; --electric2:#0091c7;
+  --orange:#d4590f; --teal:#0a8a7e; --green:#16a34a;
+  --text:#10131c; --text2:#4a5270; --text3:#7b84a0; --white:#0d0f14;
+}
+[data-theme="light"] .hero-image,
+[data-theme="light"] .solution-img img,
+[data-theme="light"] .produit-img-wrap img,
+[data-theme="light"] .about-img{
+  filter:grayscale(40%) contrast(1.05) brightness(.97);
+}
+[data-theme="light"] .hero-grid{ opacity:.5; }
+[data-theme="light"] .circuit-bg{
+  background-image:
+    radial-gradient(circle at 1px 1px,rgba(0,102,214,.10) 1px,transparent 0),
+    radial-gradient(circle at 25px 25px,rgba(0,102,214,.05) 1px,transparent 0);
+}
+[data-theme="light"] .modal-overlay{ background:rgba(20,24,38,.55); }
+html{ transition:background-color .35s ease; }
+body, nav, .modal-devis, .stat-bar-item, .solution-card, .produit-card,
+.temoignage-card, .maint-card, .contact-item, .about-feature{
+  transition:background-color .35s ease, border-color .35s ease, color .35s ease;
+}
+
+/* ── BOUTON TOGGLE THEME ── */
+.theme-toggle{
+  width:40px;height:40px;border:1px solid var(--border2);background:var(--surface);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  color:var(--text2);transition:all .25s;flex-shrink:0;
+}
+.theme-toggle:hover{ border-color:var(--electric2); color:var(--electric2); }
+.theme-toggle .material-symbols-outlined{ font-size:1.2rem; }
+.theme-toggle .icon-sun{ display:none; }
+[data-theme="light"] .theme-toggle .icon-moon{ display:none; }
+[data-theme="light"] .theme-toggle .icon-sun{ display:inline; }
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* ── CIRCUIT BG ── */
+.circuit-bg{
+  background-image:
+    radial-gradient(circle at 1px 1px,rgba(26,143,255,.12) 1px,transparent 0),
+    radial-gradient(circle at 25px 25px,rgba(26,143,255,.05) 1px,transparent 0);
+  background-size:50px 50px,50px 50px;
+}
+
+/* ── NAVBAR ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,15,20,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all .3s ease;}
+nav.scrolled{background:rgba(13,15,20,.97);}
+[data-theme="light"] nav{background:rgba(245,247,251,.85);}
+[data-theme="light"] nav.scrolled{background:rgba(245,247,251,.97);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:80px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;cursor:pointer;}
+.nav-logo img{height:60px;width:auto;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-decoration:none;position:relative;padding-bottom:2px;transition:color .25s;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--electric2);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-links a.active{color:var(--electric2);}
+.nav-links a.active::after{transform:scaleX(1);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;flex-direction:column;background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-decoration:none;padding:.75rem 0;border-bottom:1px solid var(--border);transition:color .2s;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--electric2);}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,143,255,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 10% 80%,rgba(232,108,46,.05) 0%,transparent 50%);}
+.hero-grid{position:absolute;inset:0;opacity:.4;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 0%,transparent 80%);}
+.hero-inner{max-width:1280px;margin:0 auto;padding:4rem 2rem;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.35rem .85rem;background:rgba(26,143,255,.08);border:1px solid rgba(26,143,255,.25);border-radius:2px;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;color:var(--electric2);text-transform:uppercase;margin-bottom:1.5rem;animation:fadeSlideUp .6s ease forwards;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--electric2);box-shadow:0 0 8px var(--electric2);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--white);margin-bottom:1.5rem;animation:fadeSlideUp .7s .1s ease both;}
+.hero-title .accent{color:var(--electric2);}
+.hero-title .accent-2{color:var(--orange);}
+.hero-desc{font-size:1.05rem;color:var(--text2);max-width:500px;margin-bottom:2.5rem;animation:fadeSlideUp .7s .2s ease both;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideUp .7s .3s ease both;}
+.btn-primary{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:.8rem 1.8rem;background:var(--electric);color:white;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:all .25s;text-decoration:none;}
+.btn-primary:hover{background:var(--electric2);box-shadow:0 0 30px -6px rgba(26,143,255,.6);transform:translateY(-1px);}
+.btn-secondary{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:.8rem 1.8rem;background:transparent;color:var(--text2);border:1px solid var(--border2);cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-secondary:hover{border-color:var(--text2);color:var(--white);}
+.hero-visual{position:relative;animation:fadeSlideLeft .8s .2s ease both;}
+.hero-card{background:var(--surface);border:1px solid var(--border);padding:2rem;position:relative;}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--electric),var(--teal),transparent);}
+.hero-image{width:100%;height:260px;object-fit:cover;display:block;filter:grayscale(60%) contrast(1.1);transition:filter .6s;}
+.hero-image:hover{filter:grayscale(0%) contrast(1.1);}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--border);}
+.stat-item{background:var(--surface2);padding:1.2rem;text-align:center;}
+.stat-number{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--electric2);}
+.stat-label{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:.2rem;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeSlideLeft{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .6s ease,transform .6s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .6s ease,transform .6s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+/* ── SECTION COMMONS ── */
+section{padding:6rem 0;}
+.container{max-width:1280px;margin:0 auto;padding:0 2rem;}
+.section-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--electric2);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--electric2);}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--white);}
+.section-title .accent{color:var(--electric2);}
+.section-desc{color:var(--text2);font-size:1.05rem;max-width:560px;margin-top:.75rem;}
+
+/* ── STATS BAR ── */
+#stats-bar{padding:0;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-bar-inner{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;flex-wrap:wrap;border-left:1px solid var(--border);}
+.stat-bar-item{flex:1;min-width:160px;padding:2rem 1.5rem;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .25s;}
+.stat-bar-item:hover{background:var(--surface2);}
+.stat-bar-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--electric2);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.stat-bar-item:hover::after{transform:scaleX(1);}
+.stat-bar-label{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
+.stat-bar-val{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--electric2);line-height:1;}
+.stat-bar-unit{font-size:.9rem;color:var(--text2);margin-top:.2rem;}
+
+/* ── SERVICES ── */
+#services{background:var(--bg2);}
+.solutions-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.solution-card{background:var(--surface);overflow:hidden;transition:background .25s;position:relative;cursor:pointer;}
+.solution-card:hover{background:var(--surface2);}
+.solution-img{height:220px;overflow:hidden;position:relative;}
+.solution-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(70%) contrast(1.1);transition:transform .7s ease,filter .5s ease;}
+.solution-card:hover .solution-img img{transform:scale(1.06);filter:grayscale(0%) contrast(1.1);}
+.solution-badge{position:absolute;top:1rem;right:1rem;background:rgba(13,15,20,.85);backdrop-filter:blur(8px);border:1px solid var(--border2);padding:.3rem .7rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;color:var(--electric2);text-transform:uppercase;}
+.solution-body{padding:1.75rem;}
+.solution-icon{width:42px;height:42px;border-radius:4px;background:rgba(26,143,255,.08);border:1px solid rgba(26,143,255,.2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.3rem;color:var(--electric2);transition:all .25s;}
+.solution-card:hover .solution-icon{background:rgba(26,143,255,.15);box-shadow:0 0 20px -4px rgba(26,143,255,.3);}
+.solution-title{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:.6rem;}
+.solution-desc{color:var(--text2);font-size:.9rem;line-height:1.6;margin-bottom:1.25rem;}
+.solution-link{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--electric2);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:gap .2s;}
+.solution-link:hover{gap:.7rem;}
+.solution-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;}
+.solution-card:nth-child(1)::after{background:linear-gradient(90deg,var(--electric),var(--electric2),transparent);}
+.solution-card:nth-child(2)::after{background:linear-gradient(90deg,var(--teal),var(--electric2),transparent);}
+.solution-card:nth-child(3)::after{background:linear-gradient(90deg,var(--orange),#ffaa55,transparent);}
+.solution-card:nth-child(4)::after{background:linear-gradient(90deg,#a855f7,#c084fc,transparent);}
+.solution-card:nth-child(5)::after{background:linear-gradient(90deg,var(--electric),#38bdf8,transparent);}
+.solution-card:nth-child(6)::after{background:linear-gradient(90deg,var(--teal),#34d399,transparent);}
+.solution-card:nth-child(7)::after{background:linear-gradient(90deg,var(--orange),var(--electric2),transparent);}
+
+/* ── PRODUITS ── */
+.produits-header{text-align:center;margin-bottom:3rem;}
+.produits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.produit-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .3s;cursor:pointer;position:relative;}
+.produit-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 12px 40px -10px rgba(0,0,0,.5);}
+.produit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--electric2);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.produit-card:hover::before{transform:scaleX(1);}
+.produit-img-wrap{height:180px;overflow:hidden;position:relative;background:var(--surface2);}
+.produit-img-wrap img{width:100%;height:100%;object-fit:cover;filter:grayscale(60%) contrast(1.1);transition:transform .6s ease,filter .5s;}
+.produit-card:hover .produit-img-wrap img{transform:scale(1.08);filter:grayscale(0%);}
+.produit-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,20,.7) 0%,transparent 50%);}
+.produit-icon-badge{position:absolute;top:.75rem;left:.75rem;width:38px;height:38px;background:rgba(13,15,20,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:1.1rem;}
+.produit-body{padding:1.25rem;}
+.produit-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.35rem;}
+.produit-sub{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-bottom:.75rem;}
+.produit-items{display:flex;flex-wrap:wrap;gap:.35rem;}
+.produit-tag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;background:rgba(26,143,255,.06);border:1px solid rgba(26,143,255,.15);color:var(--electric2);border-radius:2px;}
+.produits-cta-wrap{text-align:center;margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.produits-cta-note{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;color:var(--text3);}
+
+/* ── À PROPOS ── */
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-visual{position:relative;}
+.about-img{width:100%;height:400px;object-fit:cover;filter:grayscale(50%) contrast(1.1);}
+.about-tag{position:absolute;bottom:-20px;right:-20px;background:var(--electric);padding:1.5rem 2rem;text-align:center;}
+.about-tag-num{font-family:var(--font-display);font-size:2.4rem;font-weight:800;color:white;display:block;line-height:1;}
+.about-tag-text{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.7);text-transform:uppercase;display:block;margin-top:.2rem;}
+.about-features{margin-top:2rem;display:flex;flex-direction:column;gap:1rem;}
+.about-feature{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);transition:border-color .25s;}
+.about-feature:hover{border-color:var(--border2);}
+.feature-icon{width:38px;height:38px;flex-shrink:0;background:rgba(26,143,255,.08);border:1px solid rgba(26,143,255,.2);display:flex;align-items:center;justify-content:center;color:var(--electric2);font-size:1.1rem;}
+.feature-title{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.2rem;}
+.feature-desc{color:var(--text2);font-size:.85rem;}
+
+/* ── TÉMOIGNAGES ── */
+#temoignages{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.temoignages-header{text-align:center;margin-bottom:3rem;}
+.temoignages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.temoignage-card{background:var(--surface);border:1px solid var(--border);padding:2rem;position:relative;transition:all .25s;}
+.temoignage-card:hover{border-color:rgba(26,143,255,.25);transform:translateY(-3px);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);}
+.temoignage-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(to bottom,var(--electric2),transparent);transition:height .4s ease;}
+.temoignage-card:hover::before{height:100%;}
+.quote-icon{font-size:2.5rem;line-height:1;color:rgba(26,143,255,.2);font-family:Georgia,serif;margin-bottom:1rem;display:block;}
+.temoignage-text{color:var(--text2);font-size:.92rem;line-height:1.75;font-style:italic;margin-bottom:1.5rem;}
+.temoignage-footer{display:flex;align-items:center;gap:.85rem;padding-top:1.25rem;border-top:1px solid var(--border);}
+.temoignage-avatar{width:40px;height:40px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--electric2);flex-shrink:0;}
+.temoignage-name{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.1rem;}
+.temoignage-company{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);}
+.temoignage-stars{margin-left:auto;color:#f59e0b;font-size:.8rem;letter-spacing:.05em;}
+
+/* ── PARTENAIRES ── */
+#partners{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.partners-logos{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);margin-top:3rem;}
+.partner-item{background:var(--bg2);padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;transition:background .25s;cursor:pointer;text-align:center;}
+.partner-item:hover{background:var(--surface);}
+.partner-logo-icon{width:52px;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;border:1px solid var(--border2);}
+.partner-name{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--white);}
+.partner-cat{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);}
+.partners-strip{overflow:hidden;border-top:1px solid var(--border);padding:1.5rem 0;}
+.strip-track{display:flex;gap:4rem;align-items:center;animation:stripScroll 28s linear infinite;width:max-content;}
+@keyframes stripScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.strip-item{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);white-space:nowrap;display:flex;align-items:center;gap:.75rem;}
+.strip-dot{width:4px;height:4px;border-radius:50%;background:var(--electric2);}
+
+/* ── SECTEURS ── */
+.maintenance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.maint-card{background:var(--surface);border:1px solid var(--border);padding:2rem;transition:all .25s;cursor:pointer;position:relative;}
+.maint-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.maint-card:hover .maint-num{color:var(--electric2);}
+.maint-num{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;color:var(--text3);margin-bottom:1rem;transition:color .25s;}
+.maint-icon{font-size:1.8rem;color:var(--electric2);margin-bottom:1rem;}
+.maint-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.5rem;}
+.maint-desc{color:var(--text2);font-size:.88rem;line-height:1.7;}
+.maint-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--electric2);transition:width .4s;}
+.maint-card:hover::after{width:100%;}
+
+/* ── CONTACT ── */
+#contact{position:relative;overflow:hidden;}
+.contact-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(26,143,255,.07) 0%,transparent 70%);pointer-events:none;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;position:relative;z-index:2;}
+.contact-items{margin-top:2rem;display:flex;flex-direction:column;gap:1rem;}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);transition:border-color .25s;}
+.contact-item:hover{border-color:var(--electric);}
+.c-icon{width:40px;height:40px;flex-shrink:0;background:rgba(26,143,255,.08);border:1px solid rgba(26,143,255,.2);display:flex;align-items:center;justify-content:center;color:var(--electric2);font-size:1rem;}
+.c-label{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.15rem;}
+.c-value{color:var(--text);font-size:.95rem;}
+/* Contact simple form */
+.form-group{margin-bottom:1.2rem;}
+.form-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:.5rem;}
+.form-label .req{color:var(--electric2);}
+.form-input,.form-textarea,.form-select{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.8rem 1rem;font-family:var(--font-body);font-size:.95rem;transition:border-color .25s;outline:none;-webkit-appearance:none;appearance:none;}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--electric);box-shadow:0 0 0 2px rgba(26,143,255,.08);}
+.form-textarea{height:120px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2rem;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.footer-brand img{height:48px;width:auto;margin-bottom:1rem;}
+.footer-brand p{color:var(--text2);font-size:.9rem;max-width:240px;}
+.footer-socials{display:flex;gap:.75rem;margin-top:1.25rem;}
+.social-btn{width:36px;height:36px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:1rem;cursor:pointer;transition:all .25s;text-decoration:none;}
+.social-btn:hover{border-color:var(--electric2);color:var(--electric2);background:rgba(26,143,255,.08);}
+.footer-col-title{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:1.25rem;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.footer-links a{color:var(--text2);text-decoration:none;font-size:.9rem;transition:color .2s;display:flex;align-items:center;gap:.4rem;}
+.footer-links a::before{content:'';width:0;height:1px;background:var(--electric2);transition:width .2s;}
+.footer-links a:hover{color:var(--white);}
+.footer-links a:hover::before{width:12px;}
+.footer-certs{margin-top:1rem;}
+.cert-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;background:rgba(26,143,255,.06);border:1px solid rgba(26,143,255,.15);margin:.3rem .2rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;color:var(--electric2);text-transform:uppercase;}
+.footer-bottom{padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:.85rem;color:var(--text3);}
+.footer-legal{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.footer-legal a{font-size:.82rem;color:var(--text3);text-decoration:none;transition:color .2s;}
+.footer-legal a:hover{color:var(--text2);}
+
+/* ── SCROLL TO TOP ── */
+#scrollTop{position:fixed;bottom:2rem;right:2rem;z-index:50;width:44px;height:44px;background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;opacity:0;pointer-events:none;transform:translateY(10px);}
+#scrollTop.visible{opacity:1;pointer-events:all;transform:translateY(0);}
+#scrollTop:hover{border-color:var(--electric2);}
+#scrollTop .material-symbols-outlined{font-size:1.1rem;color:var(--text2);transition:color .2s;}
+#scrollTop:hover .material-symbols-outlined{color:var(--electric2);}
+
+/* ── NOTIFICATION ── */
+.notif{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface);border:1px solid var(--electric);padding:.75rem 1.5rem;display:flex;align-items:center;gap:.75rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;color:var(--electric2);z-index:400;transition:transform .4s ease;}
+.notif.show{transform:translateX(-50%) translateY(0);}
+.notif.success{border-color:var(--teal);color:var(--teal);}
+
+/* ════════════════════════════════════════
+   MODAL DEVIS
+════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+  padding:1rem;overflow-y:auto;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-devis{
+  background:var(--surface);border:1px solid var(--border2);
+  width:100%;max-width:720px;
+  position:relative;
+  transform:translateY(30px) scale(.97);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  margin:auto;
+}
+.modal-overlay.open .modal-devis{transform:translateY(0) scale(1);}
+.modal-devis::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--electric),var(--teal),var(--orange));
+}
+.modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.75rem 2rem 1.25rem;
+  border-bottom:1px solid var(--border);
+}
+.modal-title-wrap{}
+.modal-title{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--white);}
+.modal-subtitle{
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;
+  color:var(--green);margin-top:.3rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.modal-subtitle-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+.modal-close{
+  width:36px;height:36px;border:1px solid var(--border2);background:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text2);transition:all .2s;flex-shrink:0;
+}
+.modal-close:hover{border-color:var(--text);color:var(--white);}
+.modal-body{padding:2rem;max-height:calc(100vh - 200px);overflow-y:auto;}
+/* form inside modal */
+.modal-body .form-select{
+  background-color:var(--bg);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23545e7a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+  padding-right:2.5rem;cursor:pointer;
+}
+.modal-body .form-select option{background:var(--bg2);color:var(--text);}
+.modal-body .form-input,.modal-body .form-textarea{background:var(--bg);}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-row-2-3{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.modal-footer{
+  padding:1.25rem 2rem 1.75rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.modal-reassurance{
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.06em;
+  color:var(--green);display:flex;align-items:center;gap:.5rem;
+}
+.btn-devis-submit{
+  font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.85rem 2rem;background:var(--electric);color:white;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:.5rem;transition:all .25s;
+}
+.btn-devis-submit:hover{background:var(--electric2);box-shadow:0 0 30px -6px rgba(26,143,255,.6);}
+.btn-devis-submit:disabled{opacity:.6;cursor:not-allowed;transform:none !important;}
+
+/* ── RESPONSIVE ── */
+@media (max-width:1200px){.produits-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .hero-visual{order:-1;}
+  .about-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .solutions-grid{grid-template-columns:1fr 1fr;}
+  .partners-logos{grid-template-columns:repeat(3,1fr);}
+  .maintenance-grid{grid-template-columns:1fr 1fr;}
+  .temoignages-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero-inner{padding:3rem 1rem;}
+  .solutions-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .maintenance-grid{grid-template-columns:1fr;}
+  .partners-logos{grid-template-columns:repeat(2,1fr);}
+  .stat-bar-item{min-width:130px;}
+  .form-row{grid-template-columns:1fr;}
+  .form-row-2{grid-template-columns:1fr;}
+  .form-row-2-3{grid-template-columns:1fr;}
+  .about-tag{right:0;bottom:0;}
+  .produits-grid{grid-template-columns:1fr;}
+  .temoignages-grid{grid-template-columns:1fr;}
+  .modal-body{padding:1.25rem;}
+  .modal-header{padding:1.25rem 1.25rem 1rem;}
+  .modal-footer{padding:1rem 1.25rem 1.5rem;flex-direction:column;align-items:stretch;}
+  .btn-devis-submit{justify-content:center;}
+}
+@media (max-width:480px){
+  section{padding:4rem 0;}
+  .container{padding:0 1rem;}
+  .hero-ctas{flex-direction:column;}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;}
+  .solutions-header{flex-direction:column;align-items:flex-start;}
+  .footer-legal{flex-direction:column;gap:.75rem;}
+  .stats-bar-inner{display:grid;grid-template-columns:1fr 1fr;}
+  .stat-bar-item{min-width:auto;}
+}
+@media (max-width:300px){
+  html{font-size:14px;}
+  .container{padding:0 .75rem;}
+  section{padding:3rem 0;}
+  .nav-inner{padding:0 1rem;}
+  .nav-logo img{height:42px;}
+  .hero-inner{padding:2.5rem .75rem;gap:2rem;}
+  .hero-badge{font-size:.6rem;padding:.3rem .65rem;flex-wrap:wrap;}
+  .hero-desc{max-width:100%;}
+  .hero-card{padding:1.25rem;}
+  .hero-image{height:180px;}
+  .hero-stats{grid-template-columns:1fr;gap:1px;}
+  .stat-item{padding:.9rem;}
+  .stat-number{font-size:1.3rem;}
+  .stats-bar-inner{grid-template-columns:1fr;}
+  .stat-bar-item{padding:1.5rem 1rem;border-right:none;border-bottom:1px solid var(--border);}
+  .stat-bar-val{font-size:1.6rem;}
+  .solutions-header{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .solutions-header .btn-secondary{width:100%;justify-content:center;}
+  .solution-img{height:160px;}
+  .solution-body{padding:1.25rem;}
+  .solution-title{font-size:1.05rem;}
+  .produit-img-wrap{height:150px;}
+  .produit-body{padding:1rem;}
+  .about-img{height:260px;}
+  .about-tag{padding:1rem 1.25rem;right:0;bottom:0;}
+  .about-tag-num{font-size:1.8rem;}
+  .about-feature{flex-direction:column;gap:.5rem;}
+  .temoignage-card{padding:1.5rem;}
+  .temoignage-footer{flex-wrap:wrap;}
+  .temoignage-stars{margin-left:0;width:100%;margin-top:.5rem;}
+  .partners-logos{grid-template-columns:1fr;}
+  .partner-item{padding:1.5rem 1rem;}
+  .strip-track{gap:2rem;}
+  .maint-card{padding:1.5rem;}
+  .contact-glow{width:300px;height:300px;}
+  .footer-brand img{height:42px;}
+  .social-btn{width:32px;height:32px;}
+  .footer-legal{flex-direction:column;gap:.5rem;}
+  .btn-primary,.btn-secondary{padding:.7rem 1.2rem;font-size:.7rem;}
+  #scrollTop{width:38px;height:38px;bottom:1.25rem;right:1.25rem;}
+  .modal-devis{max-width:100%;}
+  .modal-title{font-size:1.15rem;}
+  .modal-subtitle{font-size:.6rem;flex-wrap:wrap;}
+  .modal-header{padding:1rem 1rem .85rem;}
+  .modal-body{padding:1rem;max-height:calc(100vh - 160px);}
+  .modal-footer{padding:.85rem 1rem 1.25rem;}
+  .modal-reassurance{font-size:.6rem;}
+  .notif{left:.75rem;right:.75rem;transform:translateY(80px);width:auto;}
+  .notif.show{transform:translateY(0);}
+}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     MODAL FORMULAIRE DE DEVIS
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="devisModal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-devis" id="devisModalBox">
+
+    <!-- En-tête -->
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <div class="modal-title">Demander un Devis</div>
+        <div class="modal-subtitle">
+          <span class="modal-subtitle-dot"></span>
+          Réponse garantie sous 24h — Gratuit &amp; Sans engagement
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeDevisModal()" aria-label="Fermer">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">close</span>
+      </button>
+    </div>
+
+    <!-- Corps -->
+    <div class="modal-body">
+
+      <!-- Message de succès (caché par défaut) -->
+      <div id="devis-success" style="display:none;background:rgba(12,168,154,.08);border:1px solid var(--teal);padding:1.75rem;color:var(--teal);font-family:var(--font-mono);font-size:.8rem;letter-spacing:.06em;text-align:center;line-height:1.8">
+        <span class="material-symbols-outlined" style="font-size:2rem;display:block;margin-bottom:.75rem">mark_email_read</span>
+        ✓ DEMANDE ENVOYÉE AVEC SUCCÈS<br>
+        <span style="color:var(--text2);font-size:.78rem">Notre équipe commerciale analysera votre demande et vous contactera sous 24h/48h avec votre devis personnalisé.</span>
+      </div>
+
+      <!-- Formulaire -->
+      <form id="devis-form" onsubmit="handleDevisSubmit(event)">
+
+        <!-- Champs cachés FormSubmit -->
+        <input type="hidden" name="_subject" value="🔵 Nouvelle demande de devis — KTIS Group">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Bonjour, nous avons bien reçu votre demande de devis. Notre équipe KTIS Group vous contactera sous 24h à 48h avec une offre personnalisée. Merci de votre confiance.">
+
+        <!-- Identité -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Nom complet <span class="req">*</span></label>
+            <input class="form-input" type="text" name="Nom complet" placeholder="Jean Dupont" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Entreprise / Société</label>
+            <input class="form-input" type="text" name="Entreprise" placeholder="Votre société">
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Email professionnel <span class="req">*</span></label>
+            <input class="form-input" type="email" name="Email" placeholder="jean@societe.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Téléphone / WhatsApp</label>
+            <input class="form-input" type="tel" name="Téléphone" placeholder="+237 6XX XXX XXX">
+          </div>
+        </div>
+
+        <!-- Type de service -->
+        <div class="form-group">
+          <label class="form-label">Type de service demandé <span class="req">*</span></label>
+          <select class="form-select" name="Type de service" required>
+            <option value="" disabled selected>— Sélectionnez un service —</option>
+            <option value="Import de marchandises">Import de marchandises</option>
+            <option value="Exportation internationale">Exportation internationale</option>
+            <option value="Prestation de Service commercial">Prestation de Service commercial</option>
+            <option value="Commerce Général & Distribution">Commerce Général &amp; Distribution</option>
+            <option value="Emballage industriel / commercial">Emballage industriel / commercial</option>
+            <option value="Colisage & Conditionnement">Colisage &amp; Conditionnement</option>
+            <option value="Solutions Énergétiques & Maintenance">Solutions Énergétiques &amp; Maintenance</option>
+            <option value="Demande de catalogue complet">Demande de catalogue complet</option>
+            <option value="Autre / Projet spécifique">Autre / Projet spécifique</option>
+          </select>
+        </div>
+
+        <!-- Nature marchandise -->
+        <div class="form-group">
+          <label class="form-label">Nature de la marchandise / Projet <span class="req">*</span></label>
+          <textarea class="form-textarea" style="height:90px" name="Nature du projet" placeholder="Décrivez précisément : type de produits, caractéristiques, usage prévu, secteur d'activité..." required></textarea>
+        </div>
+
+        <!-- Volume -->
+        <div class="form-group">
+          <label class="form-label">Quantité estimée / Volume</label>
+          <input class="form-input" type="text" name="Quantité / Volume" placeholder="Ex : 500 unités, 2 conteneurs 40HC, 10 tonnes…">
+        </div>
+
+        <!-- Origine & Destination -->
+        <div class="form-row-2-3">
+          <div class="form-group">
+            <label class="form-label">Lieu d'origine <span style="color:var(--text3)">(Optionnel)</span></label>
+            <input class="form-input" type="text" name="Lieu d'origine" placeholder="Ex : Chine, Turquie, France…">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination <span class="req">*</span></label>
+            <input class="form-input" type="text" name="Destination" placeholder="Ex : Douala, Lagos, Paris…" required>
+          </div>
+        </div>
+
+        <!-- Incoterms -->
+        <div class="form-group">
+          <label class="form-label">Incoterms souhaités <span style="color:var(--text3)">(Optionnel)</span></label>
+          <select class="form-select" name="Incoterms">
+            <option value="Non spécifié" selected>— Incoterms (si connu) —</option>
+            <option value="EXW — Ex Works">EXW — Ex Works (Départ usine)</option>
+            <option value="FCA — Free Carrier">FCA — Free Carrier (Franco transporteur)</option>
+            <option value="CPT — Carriage Paid To">CPT — Carriage Paid To</option>
+            <option value="CIP — Carriage and Insurance Paid">CIP — Carriage and Insurance Paid</option>
+            <option value="DAP — Delivered At Place">DAP — Delivered At Place</option>
+            <option value="DPU — Delivered at Place Unloaded">DPU — Delivered at Place Unloaded</option>
+            <option value="DDP — Delivered Duty Paid">DDP — Delivered Duty Paid</option>
+            <option value="FAS — Free Alongside Ship">FAS — Free Alongside Ship</option>
+            <option value="FOB — Free On Board">FOB — Free On Board</option>
+            <option value="CFR — Cost and Freight">CFR — Cost and Freight</option>
+            <option value="CIF — Cost Insurance Freight">CIF — Cost, Insurance &amp; Freight</option>
+            <option value="À définir avec l'équipe">Je ne sais pas / À définir</option>
+          </select>
+        </div>
+
+        <!-- Message complémentaire -->
+        <div class="form-group">
+          <label class="form-label">Informations complémentaires <span style="color:var(--text3)">(Optionnel)</span></label>
+          <textarea class="form-textarea" style="height:80px" name="Informations complémentaires" placeholder="Délai souhaité, budget indicatif, conditions particulières…"></textarea>
+        </div>
+
+      </form>
+    </div><!-- /modal-body -->
+
+    <!-- Pied de modal -->
+    <div class="modal-footer">
+      <div class="modal-reassurance">
+        <span class="modal-subtitle-dot"></span>
+        Réponse garantie sous 24h/48h — 100% gratuit &amp; sans engagement
+      </div>
+      <button class="btn-devis-submit" id="devis-btn" onclick="handleDevisSubmit(event)">
+        <span class="material-symbols-outlined" style="font-size:1rem">send</span>
+        Envoyer ma demande
+      </button>
+    </div>
+
+  </div><!-- /modal-devis -->
+</div><!-- /modal-overlay -->
+
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="scrollToSection('hero')" style="cursor:pointer">
+      <img src="logo.png" alt="KTIS Group"/>
+    </a>
+    <div class="nav-links">
+      <a href="#services" onclick="scrollToSection('services')">Services</a>
+      <a href="#produits" onclick="scrollToSection('produits')">Produits</a>
+      <a href="#secteurs" onclick="scrollToSection('secteurs')">Secteurs</a>
+      <a href="#about" onclick="scrollToSection('about')">À Propos</a>
+      <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Changer de thème">
+      <span class="material-symbols-outlined icon-moon">dark_mode</span>
+      <span class="material-symbols-outlined icon-sun">light_mode</span>
+    </button>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="scrollToSection('services');toggleMenu()">Services</a>
+    <a href="#" onclick="scrollToSection('produits');toggleMenu()">Produits</a>
+    <a href="#" onclick="scrollToSection('secteurs');toggleMenu()">Secteurs</a>
+    <a href="#" onclick="scrollToSection('about');toggleMenu()">À Propos</a>
+    <a href="#" onclick="scrollToSection('contact');toggleMenu()">Contact</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid circuit-bg"></div>
+  <div class="hero-inner container">
+    <div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Import · Export · Commerce · Services
+      </div>
+      <h1 class="hero-title">
+        Votre Partenaire Global en<br>
+        <span class="accent">Import-Export</span> &amp;<br>
+        <span class="accent-2">Commerce Général</span>
+      </h1>
+      <p class="hero-desc">
+        KTIS Group — spécialiste du commerce international et des solutions commerciales diversifiées. Nous connectons vos besoins avec les meilleures sources mondiales.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="openDevisModal()">
+          Demander un devis gratuit
+          <span class="material-symbols-outlined" style="font-size:1rem">description</span>
+        </button>
+        <a href="#services" class="btn-secondary" onclick="scrollToSection('services')">
+          Nos services
+          <span class="material-symbols-outlined" style="font-size:1rem">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" alt="Commerce international et logistique">
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">240+</div>
+            <div class="stat-label">Pays Desservis</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Ans Expérience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5000+</div>
+            <div class="stat-label">Clients Satisfaits</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div id="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-bar-item reveal">
+      <div class="stat-bar-label">Produits Référencés</div>
+      <div class="stat-bar-val">50K+</div>
+      <div class="stat-bar-unit">Articles en catalogue</div>
+    </div>
+    <div class="stat-bar-item reveal" style="transition-delay:.1s">
+      <div class="stat-bar-label">Partenaires Mondiaux</div>
+      <div class="stat-bar-val">800+</div>
+      <div class="stat-bar-unit">Fournisseurs vérifiés</div>
+    </div>
+    <div class="stat-bar-item reveal" style="transition-delay:.2s">
+      <div class="stat-bar-label">Taux de Satisfaction</div>
+      <div class="stat-bar-val">98.5%</div>
+      <div class="stat-bar-unit">Clients fidèles</div>
+    </div>
+    <div class="stat-bar-item reveal" style="transition-delay:.3s">
+      <div class="stat-bar-label">Livraisons/an</div>
+      <div class="stat-bar-val">12K+</div>
+      <div class="stat-bar-unit">Commandes traitées</div>
+    </div>
+    <div class="stat-bar-item reveal" style="transition-delay:.4s">
+      <div class="stat-bar-label">Zones de Couverture</div>
+      <div class="stat-bar-val">5</div>
+      <div class="stat-bar-unit">Continents</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="container">
+    <div class="solutions-header">
+      <div class="reveal">
+        <div class="section-label">01 / Services</div>
+        <h2 class="section-title">Nos <span class="accent">Services</span></h2>
+        <p class="section-desc">Solutions commerciales complètes pour vos besoins d'import-export et de distribution. Expertise, qualité et fiabilité.</p>
+      </div>
+      <button class="btn-secondary reveal" onclick="openDevisModal()" style="white-space:nowrap">Demander un devis →</button>
+    </div>
+    <div class="solutions-grid">
+      <div class="solution-card reveal" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&q=80" alt="Import et Logistique"/>
+          <div class="solution-badge">Spécialiste</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon"><span class="material-symbols-outlined">local_shipping</span></div>
+          <h3 class="solution-title">Import-Export</h3>
+          <p class="solution-desc">Service complet d'import-export avec gestion douanière, logistique internationale et suivi en temps réel de vos cargaisons depuis la source jusqu'à destination.</p>
+          <span class="solution-link">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+      <div class="solution-card reveal" style="transition-delay:.1s" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="com_gen.jpg" alt="Commerce Général"/>
+          <div class="solution-badge">Diversifié</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon" style="background:rgba(12,168,154,.08);border-color:rgba(12,168,154,.2)"><span class="material-symbols-outlined" style="color:var(--teal)">shopping_cart</span></div>
+          <h3 class="solution-title">Commerce Général</h3>
+          <p class="solution-desc">Distribution de produits variés (textile, électronique, matériel, etc.). Accès à un large réseau de fournisseurs et garantie de qualité.</p>
+          <span class="solution-link" style="color:var(--teal)">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+      <div class="solution-card reveal" style="transition-delay:.2s" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="prest.jpeg" alt="Prestations de Services"/>
+          <div class="solution-badge">Clé en Main</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon" style="background:rgba(232,108,46,.08);border-color:rgba(232,108,46,.2)"><span class="material-symbols-outlined" style="color:var(--orange)">handshake</span></div>
+          <h3 class="solution-title">Prestations de Services</h3>
+          <p class="solution-desc">Consulting commercial, sourcing produits, négociation fournisseurs, et gestion de projets d'importation. Une équipe d'experts à votre service.</p>
+          <span class="solution-link" style="color:var(--orange)">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+      <div class="solution-card reveal" style="transition-delay:.3s" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="emballage.avif" alt="Emballage industriel"/>
+          <div class="solution-badge" style="color:#c084fc;border-color:rgba(168,85,247,.3)">Packaging</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon" style="background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.2)"><span class="material-symbols-outlined" style="color:#a855f7">inventory_2</span></div>
+          <h3 class="solution-title">Emballage</h3>
+          <p class="solution-desc">Solutions d'emballage industriel et commercial sur mesure : boîtes, caisses, films protecteurs, emballages alimentaires et conditionnement export. Conformité aux normes internationales garantie.</p>
+          <span class="solution-link" style="color:#a855f7">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+      <div class="solution-card reveal" style="transition-delay:.4s" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="coli.jpg" alt="Colisage et conditionnement"/>
+          <div class="solution-badge">Logistique</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon"><span class="material-symbols-outlined">package_2</span></div>
+          <h3 class="solution-title">Colisage</h3>
+          <p class="solution-desc">Service de colisage professionnel pour vos expéditions nationales et internationales : tri, comptage, étiquetage, palettisation et consolidation. Optimisation volume et poids pour réduire vos coûts de transport.</p>
+          <span class="solution-link">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+      <div class="solution-card reveal" style="transition-delay:.5s" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="energie.jpg" alt="Solutions énergétiques et maintenance"/>
+          <div class="solution-badge" style="color:var(--teal);border-color:rgba(12,168,154,.3)">Énergie &amp; Tech</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon" style="background:rgba(12,168,154,.08);border-color:rgba(12,168,154,.2)"><span class="material-symbols-outlined" style="color:var(--teal)">electric_bolt</span></div>
+          <h3 class="solution-title">Intégrateur Énergétique &amp; Maintenance</h3>
+          <p class="solution-desc">Fourniture, installation et maintenance de systèmes d'énergie critiques : onduleurs (UPS), batteries industrielles, tableaux de distribution Schneider/ABB. Data centers, hôpitaux et sites industriels.</p>
+          <span class="solution-link" style="color:var(--teal)">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+      <div class="solution-card reveal" style="transition-delay:.6s" onclick="openDevisModal()">
+        <div class="solution-img">
+          <img src="exportation.jpg" alt="Exportation internationale"/>
+          <div class="solution-badge" style="color:var(--orange);border-color:rgba(232,108,46,.3)">International</div>
+        </div>
+        <div class="solution-body">
+          <div class="solution-icon" style="background:rgba(232,108,46,.08);border-color:rgba(232,108,46,.2)"><span class="material-symbols-outlined" style="color:var(--orange)">flight_takeoff</span></div>
+          <h3 class="solution-title">Exportation</h3>
+          <p class="solution-desc">Accompagnement complet dans vos projets d'exportation vers l'Afrique, l'Europe et l'Asie : gestion administrative et douanière, sélection des transporteurs, incoterms, assurance transit et suivi en temps réel.</p>
+          <span class="solution-link" style="color:var(--orange)">Demander un devis <span class="material-symbols-outlined" style="font-size:.9rem">north_east</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUITS ── -->
+<section id="produits" class="circuit-bg">
+  <div class="container">
+    <div class="produits-header reveal">
+      <div class="section-label" style="justify-content:center">02 / Catégories</div>
+      <h2 class="section-title">Nos <span class="accent">Produits</span></h2>
+      <p class="section-desc" style="margin:0 auto">Large gamme de produits importés et distribués. Qualité garantie, prix compétitifs et délais maîtrisés.</p>
+    </div>
+    <div class="produits-grid">
+      <div class="produit-card reveal" onclick="openDevisModal()">
+        <div class="produit-img-wrap">
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80" alt="Textile et Habillement"/>
+          <div class="produit-img-overlay"></div>
+          <div class="produit-icon-badge">👔</div>
+        </div>
+        <div class="produit-body">
+          <div class="produit-title">Textile &amp; Habillement</div>
+          <div class="produit-sub">Vêtements &amp; Accessoires</div>
+          <div class="produit-items">
+            <span class="produit-tag">Prêt-à-porter</span><span class="produit-tag">Tissus</span><span class="produit-tag">Uniformes</span><span class="produit-tag">Sport</span>
+          </div>
+        </div>
+      </div>
+      <div class="produit-card reveal" style="transition-delay:.1s" onclick="openDevisModal()">
+        <div class="produit-img-wrap">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Électronique"/>
+          <div class="produit-img-overlay"></div>
+          <div class="produit-icon-badge">📱</div>
+        </div>
+        <div class="produit-body">
+          <div class="produit-title">Électronique &amp; Informatique</div>
+          <div class="produit-sub">Matériels &amp; Accessoires</div>
+          <div class="produit-items">
+            <span class="produit-tag">Smartphones</span><span class="produit-tag">PC / Laptops</span><span class="produit-tag">Périphériques</span><span class="produit-tag">Réseaux</span>
+          </div>
+        </div>
+      </div>
+      <div class="produit-card reveal" style="transition-delay:.2s" onclick="openDevisModal()">
+        <div class="produit-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80" alt="Quincaillerie"/>
+          <div class="produit-img-overlay"></div>
+          <div class="produit-icon-badge">🔧</div>
+        </div>
+        <div class="produit-body">
+          <div class="produit-title">Quincaillerie &amp; Matériel</div>
+          <div class="produit-sub">Outillage &amp; Équipements</div>
+          <div class="produit-items">
+            <span class="produit-tag">Outillage pro</span><span class="produit-tag">Fixations</span><span class="produit-tag">Tuyauterie</span><span class="produit-tag">Électricité</span>
+          </div>
+        </div>
+      </div>
+      <div class="produit-card reveal" style="transition-delay:.3s" onclick="openDevisModal()">
+        <div class="produit-img-wrap">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Fournitures Ménagères"/>
+          <div class="produit-img-overlay"></div>
+          <div class="produit-icon-badge">🏠</div>
+        </div>
+        <div class="produit-body">
+          <div class="produit-title">Fournitures Ménagères</div>
+          <div class="produit-sub">Articles pour la maison</div>
+          <div class="produit-items">
+            <span class="produit-tag">Cuisine</span><span class="produit-tag">Entretien</span><span class="produit-tag">Décoration</span><span class="produit-tag">Hygiène</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="produits-cta-wrap reveal">
+      <button class="btn-primary" onclick="openDevisModal()" style="padding:.9rem 2.2rem;font-size:.8rem">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">menu_book</span>
+        Demander notre catalogue complet
+      </button>
+      <p class="produits-cta-note">Catalogue PDF personnalisé — envoyé sous 24h à votre adresse email professionnelle</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── À PROPOS ── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <img class="about-img" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="Équipe KTIS Group"/>
+        <div class="about-tag">
+          <span class="about-tag-num">15+</span>
+          <span class="about-tag-text">ans d'expertise</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="section-label">03 / À Propos</div>
+        <h2 class="section-title">Qui sommes-<span class="accent">nous</span> ?</h2>
+        <p class="section-desc" style="margin-top:.75rem">
+          KTIS Group est un opérateur commercial international spécialisé dans l'import-export, la distribution et les prestations de services commerciales. Fondée sur une expertise de 15+ ans, notre entreprise accompagne les distributeurs, revendeurs et entreprises dans l'accès à de nouvelles sources de produits.
+        </p>
+        <p style="color:var(--text2);font-size:.9rem;margin-top:1rem">
+          Notre approche combine une connaissance approfondie des marchés internationaux, des relations durables avec nos fournisseurs partenaires, et un service de qualité pour garantir le succès de vos projets commerciaux.
+        </p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="feature-icon"><span class="material-symbols-outlined">verified_user</span></div>
+            <div>
+              <div class="feature-title">Certifications Internationales</div>
+              <div class="feature-desc">ISO 27001, ISO 9001, certifiés Schneider Electric Partner et ABB.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon" style="background:rgba(12,168,154,.08);border-color:rgba(12,168,154,.2);color:var(--teal)"><span class="material-symbols-outlined">support_agent</span></div>
+            <div>
+              <div class="feature-title">Support 24/7/365</div>
+              <div class="feature-desc">Équipes terrain mobilisables en moins de 4h sur l'ensemble du territoire.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon" style="background:rgba(232,108,46,.08);border-color:rgba(232,108,46,.2);color:var(--orange)"><span class="material-symbols-outlined">precision_manufacturing</span></div>
+            <div>
+              <div class="feature-title">Ingénierie sur mesure</div>
+              <div class="feature-desc">Chaque projet est conçu spécifiquement selon vos contraintes techniques et opérationnelles.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TÉMOIGNAGES ── -->
+<section id="temoignages">
+  <div class="container">
+    <div class="temoignages-header reveal">
+      <div class="section-label" style="justify-content:center">04 / Références</div>
+      <h2 class="section-title">Ce que disent nos <span class="accent">Partenaires</span></h2>
+      <p class="section-desc" style="margin:0 auto">Plus de 5 000 clients nous font confiance à travers le monde. Voici ce que certains d'entre eux disent de KTIS Group.</p>
+    </div>
+    <div class="temoignages-grid">
+      <div class="temoignage-card reveal">
+        <span class="quote-icon">"</span>
+        <p class="temoignage-text">KTIS Group a transformé notre chaîne d'approvisionnement. En moins de 6 mois, nous avons réduit nos coûts d'import de 23% grâce à leur réseau de fournisseurs qualifiés en Asie. La réactivité de leur équipe est remarquable — devis reçu en moins de 24h à chaque fois.</p>
+        <div class="temoignage-footer">
+          <div class="temoignage-avatar">DL</div>
+          <div>
+            <div class="temoignage-name">Directeur des Achats</div>
+            <div class="temoignage-company">Groupe CAMEX Distribution · Douala</div>
+          </div>
+          <div class="temoignage-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="temoignage-card reveal" style="transition-delay:.15s">
+        <span class="quote-icon">"</span>
+        <p class="temoignage-text">Nous travaillons avec KTIS Group depuis 4 ans pour nos approvisionnements en matériel électronique et informatique. Leur maîtrise des procédures douanières et leur fiabilité logistique nous ont permis d'ouvrir de nouveaux marchés en Afrique subsaharienne sans aucune rupture de stock.</p>
+        <div class="temoignage-footer">
+          <div class="temoignage-avatar" style="color:var(--teal)">SR</div>
+          <div>
+            <div class="temoignage-name">Responsable Import</div>
+            <div class="temoignage-company">Société TECHPRO Cameroun · Yaoundé</div>
+          </div>
+          <div class="temoignage-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="temoignage-card reveal" style="transition-delay:.3s">
+        <span class="quote-icon">"</span>
+        <p class="temoignage-text">Leur service d'intégration énergétique a permis à notre data center de passer en énergie sécurisée avec des UPS Schneider Electric dans les délais impartis. Le contrat de maintenance préventive qu'ils assurent nous garantit une disponibilité de 99,9%. Partenaire de confiance depuis 2019.</p>
+        <div class="temoignage-footer">
+          <div class="temoignage-avatar" style="color:var(--orange)">BN</div>
+          <div>
+            <div class="temoignage-name">DSI — Directeur des Systèmes</div>
+            <div class="temoignage-company">Banque SOFICOM · Douala</div>
+          </div>
+          <div class="temoignage-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTENAIRES ── -->
+<section id="partners">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="section-label" style="justify-content:center">05 / Réseau</div>
+      <h2 class="section-title">Nos <span class="accent">Fournisseurs</span></h2>
+      <p class="section-desc" style="margin:0 auto">Partenaires sélectionnés et certifiés pour la qualité et la fiabilité de nos produits.</p>
+    </div>
+    <div class="partners-logos">
+      <div class="partner-item reveal">
+        <div class="partner-logo-icon" style="background:rgba(0,100,200,.1);border-color:rgba(0,100,200,.2)">👔</div>
+        <div class="partner-name">Textiles Asiatiques</div>
+        <div class="partner-cat">Fabrication textile premium</div>
+      </div>
+      <div class="partner-item reveal" style="transition-delay:.1s">
+        <div class="partner-logo-icon" style="background:rgba(255,50,50,.1);border-color:rgba(255,50,50,.2)">📱</div>
+        <div class="partner-name">Tech Import Group</div>
+        <div class="partner-cat">Électronique grand public</div>
+      </div>
+      <div class="partner-item reveal" style="transition-delay:.2s">
+        <div class="partner-logo-icon" style="background:rgba(0,160,130,.1);border-color:rgba(0,160,130,.2)">🔧</div>
+        <div class="partner-name">Global Hardware</div>
+        <div class="partner-cat">Distribution quincaillerie</div>
+      </div>
+      <div class="partner-item reveal" style="transition-delay:.3s">
+        <div class="partner-logo-icon" style="background:rgba(200,150,0,.1);border-color:rgba(200,150,0,.2)">🌱</div>
+        <div class="partner-name">Bio &amp; Natural Exports</div>
+        <div class="partner-cat">Produits biologiques</div>
+      </div>
+      <div class="partner-item reveal" style="transition-delay:.4s">
+        <div class="partner-logo-icon" style="background:rgba(100,50,200,.1);border-color:rgba(100,50,200,.2)">🌐</div>
+        <div class="partner-name">International Commerce Hub</div>
+        <div class="partner-cat">Logistique &amp; Douanes</div>
+      </div>
+    </div>
+  </div>
+  <div class="partners-strip">
+    <div class="strip-track">
+      <span class="strip-item"><span class="strip-dot"></span>Textiles Asiatiques</span>
+      <span class="strip-item"><span class="strip-dot"></span>Tech Import Group</span>
+      <span class="strip-item"><span class="strip-dot"></span>Global Hardware</span>
+      <span class="strip-item"><span class="strip-dot"></span>Bio &amp; Natural Exports</span>
+      <span class="strip-item"><span class="strip-dot"></span>International Commerce</span>
+      <span class="strip-item"><span class="strip-dot"></span>Logistics Partners</span>
+      <span class="strip-item"><span class="strip-dot"></span>Customs Experts</span>
+      <span class="strip-item"><span class="strip-dot"></span>Quality Assurance</span>
+      <span class="strip-item"><span class="strip-dot"></span>Distribution Network</span>
+      <span class="strip-item"><span class="strip-dot"></span>Textiles Asiatiques</span>
+      <span class="strip-item"><span class="strip-dot"></span>Tech Import Group</span>
+      <span class="strip-item"><span class="strip-dot"></span>Global Hardware</span>
+      <span class="strip-item"><span class="strip-dot"></span>Bio &amp; Natural Exports</span>
+      <span class="strip-item"><span class="strip-dot"></span>International Commerce</span>
+      <span class="strip-item"><span class="strip-dot"></span>Logistics Partners</span>
+      <span class="strip-item"><span class="strip-dot"></span>Customs Experts</span>
+      <span class="strip-item"><span class="strip-dot"></span>Quality Assurance</span>
+      <span class="strip-item"><span class="strip-dot"></span>Distribution Network</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTEURS ── -->
+<section id="secteurs">
+  <div class="container">
+    <div class="solutions-header">
+      <div class="reveal">
+        <div class="section-label">06 / Secteurs</div>
+        <h2 class="section-title">Nos <span class="accent">Marchés</span></h2>
+        <p class="section-desc">Industries et secteurs d'activité servis par nos solutions commerciales.</p>
+      </div>
+    </div>
+    <div class="maintenance-grid">
+      <div class="maint-card reveal">
+        <div class="maint-num">01</div>
+        <div class="maint-icon"><span class="material-symbols-outlined">shopping_bags</span></div>
+        <div class="maint-title">Commerce de Retail</div>
+        <p class="maint-desc">Fournisseur de produits diversifiés pour petits et grands commerces. Assortiment compétitif et conditions adaptées.</p>
+      </div>
+      <div class="maint-card reveal" style="transition-delay:.1s">
+        <div class="maint-num">02</div>
+        <div class="maint-icon" style="color:var(--orange)"><span class="material-symbols-outlined">factory</span></div>
+        <div class="maint-title">Secteur Industriel</div>
+        <p class="maint-desc">Fournitures et équipements pour l'industrie manufacturière. Livraisons en grandes quantités avec support technique.</p>
+      </div>
+      <div class="maint-card reveal" style="transition-delay:.2s">
+        <div class="maint-num">03</div>
+        <div class="maint-icon" style="color:var(--teal)"><span class="material-symbols-outlined">directions_car</span></div>
+        <div class="maint-title">Automotive &amp; Mobility</div>
+        <p class="maint-desc">Fournitures et pièces détachées pour le secteur automobile et mobilité urbaine. Sourcing fiable et logistique adaptée.</p>
+      </div>
+      <div class="maint-card reveal">
+        <div class="maint-num">04</div>
+        <div class="maint-icon"><span class="material-symbols-outlined">school</span></div>
+        <div class="maint-title">Secteur Éducation</div>
+        <p class="maint-desc">Fournitures scolaires, mobilier et équipements pédagogiques. Solutions clé en main pour établissements.</p>
+      </div>
+      <div class="maint-card reveal" style="transition-delay:.1s">
+        <div class="maint-num">05</div>
+        <div class="maint-icon" style="color:var(--orange)"><span class="material-symbols-outlined">local_hotel</span></div>
+        <div class="maint-title">Hôtellerie &amp; Tourisme</div>
+        <p class="maint-desc">Meubles, fournitures d'accueil et équipements pour hôtels et structures touristiques.</p>
+      </div>
+      <div class="maint-card reveal" style="transition-delay:.2s">
+        <div class="maint-num">06</div>
+        <div class="maint-icon" style="color:var(--teal)"><span class="material-symbols-outlined">construction</span></div>
+        <div class="maint-title">Bâtiment &amp; Construction</div>
+        <p class="maint-desc">Matériaux, outillages et fournitures pour le bâtiment — approvisionnement en grandes quantités et conformité aux normes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="circuit-bg">
+  <div class="contact-glow"></div>
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Infos de contact -->
+      <div class="reveal-left">
+        <div class="section-label">07 / Contact</div>
+        <h2 class="section-title">Parlons de votre <span class="accent">Projet</span></h2>
+        <p class="section-desc" style="margin-top:.75rem">
+          Notre équipe commerciale est disponible pour répondre à toutes vos questions. Pour un devis complet et personnalisé, utilisez notre formulaire dédié.
+        </p>
+        <div style="margin-top:1.5rem">
+          <button class="btn-primary" onclick="openDevisModal()" style="margin-bottom:1.5rem">
+            <span class="material-symbols-outlined" style="font-size:1rem">description</span>
+            Demander un devis gratuit
+          </button>
+        </div>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon"><span class="material-symbols-outlined" style="font-size:1rem">call</span></div>
+            <div>
+              <div class="c-label">Téléphone</div>
+              <div class="c-value">+237 682 670 066</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon" style="background:rgba(12,168,154,.08);border-color:rgba(12,168,154,.2);color:var(--teal)"><span class="material-symbols-outlined" style="font-size:1rem">mail</span></div>
+            <div>
+              <div class="c-label">Email</div>
+              <div class="c-value">contact@ktisgroup.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon" style="background:rgba(232,108,46,.08);border-color:rgba(232,108,46,.2);color:var(--orange)"><span class="material-symbols-outlined" style="font-size:1rem">location_on</span></div>
+            <div>
+              <div class="c-label">Siège social</div>
+              <div class="c-value">Douala, Cameroun</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><span class="material-symbols-outlined" style="font-size:1rem">schedule</span></div>
+            <div>
+              <div class="c-label">Horaires</div>
+              <div class="c-value">Lun–Ven 08h–17h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulaire de message rapide -->
+      <div class="reveal-right">
+        <div style="background:var(--surface);border:1px solid var(--border);padding:2rem;position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--electric),transparent)"></div>
+          <div style="font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--electric2);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+            <span class="material-symbols-outlined" style="font-size:1rem">chat</span>
+            Message rapide
+          </div>
+          <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.5rem">
+            Une question générale ? Envoyez-nous un message. Pour un devis, utilisez le bouton ci-contre.
+          </p>
+
+          <div id="contact-success" style="display:none;background:rgba(12,168,154,.08);border:1px solid var(--teal);padding:1.25rem;color:var(--teal);font-family:var(--font-mono);font-size:.78rem;letter-spacing:.06em;margin-bottom:1rem">
+            ✓ Message envoyé — Nous vous répondrons sous 24h.
+          </div>
+
+          <form id="contact-form" onsubmit="handleContactSubmit(event)">
+            <input type="hidden" name="_subject" value="Message de contact — KTIS Group">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nom <span class="req">*</span></label>
+                <input class="form-input" type="text" name="Nom" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email <span class="req">*</span></label>
+                <input class="form-input" type="email" name="Email" placeholder="john@company.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sujet</label>
+              <input class="form-input" type="text" name="Sujet" placeholder="Votre sujet...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message <span class="req">*</span></label>
+              <textarea class="form-textarea" name="Message" placeholder="Votre message..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" id="contact-btn" style="width:100%;justify-content:center">
+              Envoyer le message
+              <span class="material-symbols-outlined" style="font-size:1rem">send</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.png" alt="KTIS Group" style="height:60px;width:auto;margin-bottom:1rem"/>
+        <p>Intégrateur commercial et fournisseur de solutions d'import-export, distribution de produits variés et prestations de services commerciales.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" onclick="showNotif('LinkedIn — Bientôt disponible')"><span class="material-symbols-outlined" style="font-size:.9rem">link</span></a>
+          <a href="#" class="social-btn" onclick="showNotif('Twitter — Bientôt disponible')"><span class="material-symbols-outlined" style="font-size:.9rem">share</span></a>
+          <a href="#" class="social-btn" onclick="scrollToSection('contact')"><span class="material-symbols-outlined" style="font-size:.9rem">mail</span></a>
+        </div>
+        <div class="footer-certs">
+          <span class="cert-badge"><span class="material-symbols-outlined" style="font-size:.8rem">verified_user</span>Certifié Import-Export</span>
+          <span class="cert-badge"><span class="material-symbols-outlined" style="font-size:.8rem">verified</span>Douanes Agréés</span>
+          <span class="cert-badge"><span class="material-symbols-outlined" style="font-size:.8rem">shield</span>Commerce Responsable</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Produits &amp; Services</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="scrollToSection('services')">Import-Export</a></li>
+          <li><a href="#" onclick="scrollToSection('services')">Commerce Général</a></li>
+          <li><a href="#" onclick="scrollToSection('services')">Prestations Commerciales</a></li>
+          <li><a href="#" onclick="scrollToSection('secteurs')">Marchés Servis</a></li>
+          <li><a href="#" onclick="openDevisModal()">Demander un Devis</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Informations</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="scrollToSection('services')">Nos Services</a></li>
+          <li><a href="#" onclick="scrollToSection('produits')">Catégories Produits</a></li>
+          <li><a href="#" onclick="scrollToSection('secteurs')">Secteurs d'Activité</a></li>
+          <li><a href="#" onclick="scrollToSection('temoignages')">Témoignages Clients</a></li>
+          <li><a href="#" onclick="scrollToSection('about')">À Propos</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Démarrer</div>
+        <p style="color:var(--text2);font-size:.85rem;margin-bottom:1rem">Vous cherchez de nouveaux produits ? Contactez notre équipe pour discuter de vos besoins.</p>
+        <button onclick="openDevisModal()" class="btn-primary" style="width:100%;margin-bottom:.75rem;justify-content:center">
+          Demander un devis
+        </button>
+        <p style="color:var(--text3);font-size:.75rem;font-family:var(--font-mono)">Réponse sous 24h/48h garantie</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 KTIS Group. Tous droits réservés.</div>
+      <div class="footer-legal">
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="#" onclick="showNotif('Conformité environnementale — Page en construction')">Conformité environnementale</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── NOTIFICATION ── -->
+<div class="notif" id="notif">
+  <span class="material-symbols-outlined" style="font-size:1rem">info</span>
+  <span id="notif-text">Info</span>
+</div>
+
+<!-- ── SCROLL TO TOP ── -->
+<div id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <span class="material-symbols-outlined">keyboard_arrow_up</span>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   THEME CLAIR / SOMBRE
+══════════════════════════════════════ */
+(function initTheme(){
+  const saved = localStorage.getItem('ktis-theme');
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+})();
+function toggleTheme(){
+  const html = document.documentElement;
+  const isLight = html.getAttribute('data-theme') === 'light';
+  if (isLight){
+    html.removeAttribute('data-theme');
+    localStorage.setItem('ktis-theme', 'dark');
+  } else {
+    html.setAttribute('data-theme', 'light');
+    localStorage.setItem('ktis-theme', 'light');
+  }
+}
+
+/* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── NAVBAR SCROLL + ACTIVE LINK ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+  const sections = ['hero','services','produits','about','temoignages','partners','secteurs','contact'];
+  let current = '';
+  sections.forEach(id => {
+    const s = document.getElementById(id);
+    if (s && window.scrollY >= s.offsetTop - 120) current = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  if (current) {
+    const link = document.querySelector(`.nav-links a[href="#${current}"]`);
+    if (link) link.classList.add('active');
+  }
+});
+
+/* ══════════════════════════════════════
+   MODAL DEVIS
+══════════════════════════════════════ */
+function openDevisModal() {
+  const overlay = document.getElementById('devisModal');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Reset form si précédemment envoyé
+  const form = document.getElementById('devis-form');
+  const success = document.getElementById('devis-success');
+  if (form.style.display === 'none') {
+    form.style.display = '';
+    form.reset();
+    success.style.display = 'none';
+    const btn = document.getElementById('devis-btn');
+    btn.disabled = false;
+    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem">send</span> Envoyer ma demande';
+  }
+}
+function closeDevisModal() {
+  document.getElementById('devisModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('devisModal')) closeDevisModal();
+}
+// Fermer avec Echap
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDevisModal(); });
+
+/* ══════════════════════════════════════
+   SOUMISSION FORMULAIRE DEVIS
+   → FormSubmit.co → simembacob@gmail.com
+══════════════════════════════════════ */
+async function handleDevisSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('devis-form');
+  const btn  = document.getElementById('devis-btn');
+
+  // Validation HTML5
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  // État chargement
+  btn.disabled = true;
+  btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem;animation:spin 1s linear infinite">refresh</span> Envoi en cours…';
+
+  // Collecte des données
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/simembacob@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    });
+
+    if (response.ok) {
+      // Succès
+      form.style.display = 'none';
+      document.getElementById('devis-success').style.display = 'block';
+      showNotif('Demande de devis envoyée avec succès !', true);
+    } else {
+      throw new Error('Erreur serveur');
+    }
+  } catch (err) {
+    // Fallback : si AJAX bloqué, on soumet en natif
+    form.action = 'https://formsubmit.co/simembacob@gmail.com';
+    form.method = 'POST';
+    // Ajouter _next pour rediriger après soumission native
+    let nextInput = form.querySelector('input[name="_next"]');
+    if (!nextInput) {
+      nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = window.location.href;
+      form.appendChild(nextInput);
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem">send</span> Envoyer ma demande';
+    showNotif('Redirection vers le serveur d\'envoi…');
+    setTimeout(() => form.submit(), 800);
+  }
+}
+
+/* ══════════════════════════════════════
+   SOUMISSION FORMULAIRE CONTACT RAPIDE
+   → FormSubmit.co → simembacob@gmail.com
+══════════════════════════════════════ */
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('contact-btn');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem;animation:spin 1s linear infinite">refresh</span> Envoi…';
+
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/simembacob@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    });
+
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+      showNotif('Message envoyé avec succès !', true);
+    } else {
+      throw new Error('Erreur');
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = 'Envoyer le message <span class="material-symbols-outlined" style="font-size:1rem">send</span>';
+    showNotif('Erreur d\'envoi. Contactez-nous directement par email.');
+  }
+}
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+/* ── NOTIFICATION ── */
+let notifTimeout;
+function showNotif(msg, success = false) {
+  const n = document.getElementById('notif');
+  document.getElementById('notif-text').textContent = msg;
+  n.className = 'notif show' + (success ? ' success' : '');
+  clearTimeout(notifTimeout);
+  notifTimeout = setTimeout(() => n.classList.remove('show'), 4000);
+}
+</script>
+</body>
+</html>
