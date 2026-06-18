@@ -88,7 +88,7 @@ nav.scrolled{background:rgba(13,15,20,.97);}
 [data-theme="light"] nav.scrolled{background:rgba(245,247,251,.97);}
 .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:80px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;cursor:pointer;}
-.nav-logo img{height:60px;width:auto;display:block;}
+.nav-logo img{height:70px;width:auto;display:block;}
 .nav-links{display:flex;align-items:center;gap:2rem;}
 .nav-links a{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-decoration:none;position:relative;padding-bottom:2px;transition:color .25s;}
 .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--electric2);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
@@ -525,11 +525,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
       <!-- Formulaire -->
       <form id="devis-form" onsubmit="handleDevisSubmit(event)">
 
-        <!-- Champs cachés FormSubmit -->
-        <input type="hidden" name="_subject" value="🔵 Nouvelle demande de devis — KTIS Group">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_autoresponse" value="Bonjour, nous avons bien reçu votre demande de devis. Notre équipe KTIS Group vous contactera sous 24h à 48h avec une offre personnalisée. Merci de votre confiance.">
 
         <!-- Identité -->
         <div class="form-row-2">
@@ -1202,9 +1197,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
           </div>
 
           <form id="contact-form" onsubmit="handleContactSubmit(event)">
-            <input type="hidden" name="_subject" value="Message de contact — KTIS Group">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">Nom <span class="req">*</span></label>
@@ -1383,92 +1375,127 @@ function closeModalOnOverlay(e) {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDevisModal(); });
 
 /* ══════════════════════════════════════
+   CONFIG ENVOI — 1 seul endroit à changer
+══════════════════════════════════════ */
+const MAIL_DEST = 'simembacob@gmail.com'; // ← remplacer par l'adresse définitive
+
+/* ── helpers ── */
+function _btnLoading(btn, label){
+  btn.disabled = true;
+  btn.innerHTML = `<span class="material-symbols-outlined" style="font-size:1rem;animation:spin .9s linear infinite">refresh</span> ${label}`;
+}
+function _btnReset(btn, html){ btn.disabled = false; btn.innerHTML = html; }
+
+/* ── inject champs techniques FormSubmit dans un form ── */
+function _injectFormSubmitFields(form, subject, autoresponse){
+  const set = (n,v) => {
+    let el = form.querySelector(`input[name="${n}"]`);
+    if(!el){ el = document.createElement('input'); el.type='hidden'; el.name=n; form.appendChild(el); }
+    el.value = v;
+  };
+  set('_subject',    subject);
+  set('_captcha',    'false');
+  set('_template',   'table');
+  set('_replyto',    '');        // FormSubmit Reply-To automatique
+  set('_next',       window.location.href);
+  if(autoresponse) set('_autoresponse', autoresponse);
+}
+
+/* ══════════════════════════════════════
    SOUMISSION FORMULAIRE DEVIS
-   → FormSubmit.co → simembacob@gmail.com
 ══════════════════════════════════════ */
 async function handleDevisSubmit(e) {
   e.preventDefault();
-  const form = document.getElementById('devis-form');
-  const btn  = document.getElementById('devis-btn');
 
-  // Validation HTML5
+  const form    = document.getElementById('devis-form');
+  const btn     = document.getElementById('devis-btn');
+  const success = document.getElementById('devis-success');
+
+  /* — validation native — */
   if (!form.checkValidity()) { form.reportValidity(); return; }
 
-  // État chargement
-  btn.disabled = true;
-  btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem;animation:spin 1s linear infinite">refresh</span> Envoi en cours…';
+  /* — état chargement — */
+  const btnOrigHtml = btn.innerHTML;
+  _btnLoading(btn, 'Envoi en cours…');
 
-  // Collecte des données
-  const data = new FormData(form);
+  /* — inject champs FormSubmit — */
+  _injectFormSubmitFields(
+    form,
+    '🔵 Nouvelle demande de devis — KTIS Group',
+    'Bonjour, nous avons bien reçu votre demande de devis. Notre équipe KTIS Group vous contactera sous 24h à 48h avec une offre personnalisée. Merci de votre confiance.'
+  );
 
+  /* — tentative AJAX — */
+  let ajaxOk = false;
   try {
-    const response = await fetch('https://formsubmit.co/ajax/simembacob@gmail.com', {
-      method: 'POST',
+    const res = await fetch(`https://formsubmit.co/ajax/${MAIL_DEST}`, {
+      method:  'POST',
       headers: { 'Accept': 'application/json' },
-      body: data
+      body:    new FormData(form)
     });
+    /* FormSubmit renvoie { success: "true" } quand tout va bien */
+    const json = await res.json().catch(() => ({}));
+    ajaxOk = res.ok && (json.success === 'true' || json.success === true);
+  } catch(_) { /* réseau coupé ou CORS → on tombe dans le fallback */ }
 
-    if (response.ok) {
-      // Succès
-      form.style.display = 'none';
-      document.getElementById('devis-success').style.display = 'block';
-      showNotif('Demande de devis envoyée avec succès !', true);
-    } else {
-      throw new Error('Erreur serveur');
-    }
-  } catch (err) {
-    // Fallback : si AJAX bloqué, on soumet en natif
-    form.action = 'https://formsubmit.co/simembacob@gmail.com';
-    form.method = 'POST';
-    // Ajouter _next pour rediriger après soumission native
-    let nextInput = form.querySelector('input[name="_next"]');
-    if (!nextInput) {
-      nextInput = document.createElement('input');
-      nextInput.type = 'hidden';
-      nextInput.name = '_next';
-      nextInput.value = window.location.href;
-      form.appendChild(nextInput);
-    }
-    btn.disabled = false;
-    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem">send</span> Envoyer ma demande';
-    showNotif('Redirection vers le serveur d\'envoi…');
-    setTimeout(() => form.submit(), 800);
+  if (ajaxOk) {
+    /* ✅ AJAX réussi */
+    form.style.display = 'none';
+    success.style.display = 'block';
+    showNotif('Demande de devis envoyée avec succès !', true);
+    return;
   }
+
+  /* — fallback : soumission native (ouvre une nouvelle page FormSubmit) — */
+  showNotif('Redirection vers le serveur d\'envoi…');
+  form.action = `https://formsubmit.co/${MAIL_DEST}`;
+  form.method = 'POST';
+  /* on laisse le bouton en état "chargement" pendant la redirection */
+  setTimeout(() => form.submit(), 600);
 }
 
 /* ══════════════════════════════════════
    SOUMISSION FORMULAIRE CONTACT RAPIDE
-   → FormSubmit.co → simembacob@gmail.com
 ══════════════════════════════════════ */
 async function handleContactSubmit(e) {
   e.preventDefault();
-  const form = document.getElementById('contact-form');
-  const btn  = document.getElementById('contact-btn');
 
-  btn.disabled = true;
-  btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1rem;animation:spin 1s linear infinite">refresh</span> Envoi…';
+  const form    = document.getElementById('contact-form');
+  const btn     = document.getElementById('contact-btn');
+  const success = document.getElementById('contact-success');
 
-  const data = new FormData(form);
+  const btnOrigHtml = btn.innerHTML;
+  _btnLoading(btn, 'Envoi…');
 
+  _injectFormSubmitFields(
+    form,
+    '✉️ Message de contact — KTIS Group',
+    null
+  );
+
+  let ajaxOk = false;
   try {
-    const response = await fetch('https://formsubmit.co/ajax/simembacob@gmail.com', {
-      method: 'POST',
+    const res  = await fetch(`https://formsubmit.co/ajax/${MAIL_DEST}`, {
+      method:  'POST',
       headers: { 'Accept': 'application/json' },
-      body: data
+      body:    new FormData(form)
     });
+    const json = await res.json().catch(() => ({}));
+    ajaxOk = res.ok && (json.success === 'true' || json.success === true);
+  } catch(_) {}
 
-    if (response.ok) {
-      form.style.display = 'none';
-      document.getElementById('contact-success').style.display = 'block';
-      showNotif('Message envoyé avec succès !', true);
-    } else {
-      throw new Error('Erreur');
-    }
-  } catch (err) {
-    btn.disabled = false;
-    btn.innerHTML = 'Envoyer le message <span class="material-symbols-outlined" style="font-size:1rem">send</span>';
-    showNotif('Erreur d\'envoi. Contactez-nous directement par email.');
+  if (ajaxOk) {
+    form.style.display = 'none';
+    success.style.display = 'block';
+    showNotif('Message envoyé avec succès !', true);
+    return;
   }
+
+  /* fallback natif */
+  showNotif('Redirection vers le serveur d\'envoi…');
+  form.action = `https://formsubmit.co/${MAIL_DEST}`;
+  form.method = 'POST';
+  setTimeout(() => form.submit(), 600);
 }
 
 /* ── SCROLL REVEAL ── */
