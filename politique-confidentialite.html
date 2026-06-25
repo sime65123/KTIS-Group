@@ -10,6 +10,8 @@
     document.documentElement.setAttribute('data-theme', 'light');
   }
 </script>
+<script src="i18n-legal.js"></script>
+<script src="i18n.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <style>
@@ -68,6 +70,27 @@ body, nav, .legal-toc, .legal-highlight, .legal-table th, .legal-table td,
 .theme-toggle .icon-sun{ display:none; }
 [data-theme="light"] .theme-toggle .icon-moon{ display:none; }
 [data-theme="light"] .theme-toggle .icon-sun{ display:inline; }
+
+/* ── SÉLECTEUR DE LANGUE ── */
+.lang-switcher{
+  display:flex;align-items:center;gap:2px;flex-shrink:0;
+  border:1px solid var(--border2);background:var(--surface);
+  overflow:hidden;
+}
+.lang-btn{
+  width:38px;height:38px;border:none;background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.2rem;transition:all .2s;
+  opacity:.45;padding:0;
+}
+.lang-btn.lang-text{
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;font-weight:500;
+}
+.lang-btn:hover{ opacity:.85;background:var(--surface2); }
+.lang-btn.lang-active{
+  opacity:1;background:rgba(26,143,255,.12);
+  box-shadow:inset 0 0 0 1px rgba(26,143,255,.3);
+}
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -295,14 +318,18 @@ nav {
     <a href="index.html" class="nav-logo">
       <img src="logo.png" alt="KTIS Group"/>
     </a>
-    <div style="display:flex;align-items:center;gap:1rem">
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Changer de thème">
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')" title="Français">🇫🇷</button>
+        <button class="lang-btn lang-text" data-lang="en" onclick="switchLang('en')" title="English">EN</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-aria="nav.aria.theme" aria-label="Changer de thème">
         <span class="material-symbols-outlined icon-moon">dark_mode</span>
         <span class="material-symbols-outlined icon-sun">light_mode</span>
       </button>
       <a href="index.html" class="nav-back">
         <span class="material-symbols-outlined" style="font-size:1rem">arrow_back</span>
-        Retour au site
+        <span data-i18n="legal.nav.back">Retour au site</span>
       </a>
     </div>
   </div>
@@ -315,15 +342,15 @@ nav {
       <span class="material-symbols-outlined" style="font-size:1.8rem">privacy_tip</span>
     </div>
     <div>
-      <div class="legal-hero-label">Documents légaux</div>
-      <h1 class="legal-hero-title">Politique de <span>Confidentialité</span></h1>
-      <p style="color:var(--text2);font-size:.95rem;margin-top:.5rem">
+      <div class="legal-hero-label" data-i18n="legal.doc.label">Documents légaux</div>
+      <h1 class="legal-hero-title"><span data-i18n="pc.hero.title">Politique de </span><span data-i18n="pc.hero.title.accent">Confidentialité</span></h1>
+      <p style="color:var(--text2);font-size:.95rem;margin-top:.5rem" data-i18n="pc.hero.desc">
         La protection de vos données personnelles est une priorité pour KTIS Group. Ce document décrit la manière dont nous collectons, utilisons et protégeons vos informations.
       </p>
       <div class="legal-update">
         <span class="material-symbols-outlined" style="font-size:.9rem">calendar_today</span>
-        Dernière mise à jour : [À COMPLÉTER — ex. : 16 juin 2026]
-        &nbsp;·&nbsp; Version 1.0
+        <span data-i18n="ml.update">Dernière mise à jour :</span> <span data-i18n="legal.update.placeholder">[À COMPLÉTER — ex. : 16 juin 2026]</span>
+        &nbsp;·&nbsp; <span data-i18n="legal.version">Version 1.0</span>
       </div>
     </div>
   </div>
@@ -334,20 +361,20 @@ nav {
 
   <!-- TABLE DES MATIÈRES -->
   <aside class="legal-toc">
-    <div class="toc-title">Sommaire</div>
+    <div class="toc-title" data-i18n="legal.toc.title">Sommaire</div>
     <ul class="toc-list">
-      <li><a href="#s1">1. Responsable du traitement</a></li>
-      <li><a href="#s2">2. Données collectées</a></li>
-      <li><a href="#s3">3. Finalités du traitement</a></li>
-      <li><a href="#s4">4. Base légale</a></li>
-      <li><a href="#s5">5. Durée de conservation</a></li>
-      <li><a href="#s6">6. Transferts internationaux</a></li>
-      <li><a href="#s7">7. Partage des données</a></li>
-      <li><a href="#s8">8. Vos droits</a></li>
-      <li><a href="#s9">9. Cookies</a></li>
-      <li><a href="#s10">10. Sécurité</a></li>
-      <li><a href="#s11">11. Modifications</a></li>
-      <li><a href="#s12">12. Contact</a></li>
+      <li><a href="#s1" data-i18n="pc.toc.s1">1. Responsable du traitement</a></li>
+      <li><a href="#s2" data-i18n="pc.toc.s2">2. Données collectées</a></li>
+      <li><a href="#s3" data-i18n="pc.toc.s3">3. Finalités du traitement</a></li>
+      <li><a href="#s4" data-i18n="pc.toc.s4">4. Base légale</a></li>
+      <li><a href="#s5" data-i18n="pc.toc.s5">5. Durée de conservation</a></li>
+      <li><a href="#s6" data-i18n="pc.toc.s6">6. Transferts internationaux</a></li>
+      <li><a href="#s7" data-i18n="pc.toc.s7">7. Partage des données</a></li>
+      <li><a href="#s8" data-i18n="pc.toc.s8">8. Vos droits</a></li>
+      <li><a href="#s9" data-i18n="pc.toc.s9">9. Cookies</a></li>
+      <li><a href="#s10" data-i18n="pc.toc.s10">10. Sécurité</a></li>
+      <li><a href="#s11" data-i18n="pc.toc.s11">11. Modifications</a></li>
+      <li><a href="#s12" data-i18n="pc.toc.s12">12. Contact</a></li>
     </ul>
   </aside>
 
@@ -358,7 +385,7 @@ nav {
     <div class="placeholder-notice">
       <span class="icon"><span class="material-symbols-outlined" style="font-size:1.1rem">edit_note</span></span>
       <p>
-        <strong>Document de substitution à compléter.</strong> Les sections marquées [ À COMPLÉTER ] doivent être remplies avec les informations légales exactes de KTIS Group avant toute mise en ligne officielle. Consultez un juriste spécialisé en droit des affaires international pour valider ce document.
+        <strong data-i18n="legal.notice.strong">Document de substitution à compléter.</strong> <span data-i18n="pc.notice.text">Les sections marquées [ À COMPLÉTER ] doivent être remplies avec les informations légales exactes de KTIS Group avant toute mise en ligne officielle. Consultez un juriste spécialisé en droit des affaires international pour valider ce document.</span>
       </p>
     </div>
 
@@ -366,39 +393,39 @@ nav {
     <div class="legal-section" id="s1">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 01</span>
-        <h2 class="legal-section-title">Responsable du traitement</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s1.title">Responsable du traitement</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n-html="pc.s1.p1">
         La société <strong>KTIS Group</strong> est responsable du traitement des données à caractère personnel collectées via ce site internet et dans le cadre de ses activités commerciales.
       </p>
       <table class="legal-table">
         <tr>
-          <th>Information</th>
-          <th>Détail</th>
+          <th data-i18n="pc.s1.table.info">Information</th>
+          <th data-i18n="pc.s1.table.detail">Détail</th>
         </tr>
         <tr>
-          <td>Dénomination sociale</td>
-          <td>KTIS Group</td>
+          <td data-i18n="pc.s1.row.denom.label">Dénomination sociale</td>
+          <td data-i18n="pc.s1.row.denom.val">KTIS Group</td>
         </tr>
         <tr>
-          <td>Forme juridique</td>
-          <td>[À COMPLÉTER — ex. : SARL, SA, etc.]</td>
+          <td data-i18n="pc.s1.row.forme.label">Forme juridique</td>
+          <td data-i18n="pc.s1.row.forme.val">[À COMPLÉTER — ex. : SARL, SA, etc.]</td>
         </tr>
         <tr>
-          <td>Numéro d'immatriculation</td>
-          <td>[À COMPLÉTER — Registre du Commerce du Cameroun]</td>
+          <td data-i18n="pc.s1.row.immat.label">Numéro d'immatriculation</td>
+          <td data-i18n="pc.s1.row.immat.val">[À COMPLÉTER — Registre du Commerce du Cameroun]</td>
         </tr>
         <tr>
-          <td>Siège social</td>
-          <td>Douala, Cameroun</td>
+          <td data-i18n="pc.s1.row.siege.label">Siège social</td>
+          <td data-i18n="pc.s1.row.siege.val">Douala, Cameroun</td>
         </tr>
         <tr>
-          <td>Email de contact</td>
-          <td>contact@ktisgroup.com</td>
+          <td data-i18n="pc.s1.row.email.label">Email de contact</td>
+          <td data-i18n="pc.s1.row.email.val">contact@ktisgroup.com</td>
         </tr>
         <tr>
-          <td>Téléphone</td>
-          <td>+237 682 670 066</td>
+          <td data-i18n="pc.s1.row.tel.label">Téléphone</td>
+          <td data-i18n="pc.s1.row.tel.val">+237 682 670 066</td>
         </tr>
       </table>
     </div>
@@ -407,19 +434,19 @@ nav {
     <div class="legal-section" id="s2">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 02</span>
-        <h2 class="legal-section-title">Données collectées</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s2.title">Données collectées</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s2.p1">
         Dans le cadre de notre activité et de la navigation sur notre site, nous pouvons être amenés à collecter les catégories de données personnelles suivantes :
       </p>
       <ul class="legal-list">
-        <li><strong>Données d'identification :</strong> nom, prénom, dénomination de l'entreprise, poste occupé.</li>
-        <li><strong>Données de contact :</strong> adresse e-mail professionnelle, numéro de téléphone.</li>
-        <li><strong>Données commerciales :</strong> nature des marchandises, volumes estimés, destinations, incoterms souhaités, et tout autre élément renseigné dans le formulaire de devis.</li>
-        <li><strong>Données de navigation :</strong> adresse IP, type de navigateur, pages visitées, durée de visite (via cookies analytiques, si activés).</li>
-        <li><strong>Données de communication :</strong> contenu des messages échangés par e-mail ou via le formulaire de contact.</li>
+        <li data-i18n-html="pc.s2.li.ident"><strong>Données d'identification :</strong> nom, prénom, dénomination de l'entreprise, poste occupé.</li>
+        <li data-i18n-html="pc.s2.li.contact"><strong>Données de contact :</strong> adresse e-mail professionnelle, numéro de téléphone.</li>
+        <li data-i18n-html="pc.s2.li.commerce"><strong>Données commerciales :</strong> nature des marchandises, volumes estimés, destinations, incoterms souhaités, et tout autre élément renseigné dans le formulaire de devis.</li>
+        <li data-i18n-html="pc.s2.li.nav"><strong>Données de navigation :</strong> adresse IP, type de navigateur, pages visitées, durée de visite (via cookies analytiques, si activés).</li>
+        <li data-i18n-html="pc.s2.li.comm"><strong>Données de communication :</strong> contenu des messages échangés par e-mail ou via le formulaire de contact.</li>
       </ul>
-      <div class="legal-highlight">
+      <div class="legal-highlight" data-i18n="pc.s2.highlight">
         Nous ne collectons pas de données sensibles au sens des réglementations applicables (origines ethniques, opinions politiques, données de santé, etc.).
       </div>
     </div>
@@ -428,33 +455,33 @@ nav {
     <div class="legal-section" id="s3">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 03</span>
-        <h2 class="legal-section-title">Finalités du traitement</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s3.title">Finalités du traitement</h2>
       </div>
-      <p class="legal-text">Vos données personnelles sont traitées pour les finalités suivantes :</p>
+      <p class="legal-text" data-i18n="pc.s3.p1">Vos données personnelles sont traitées pour les finalités suivantes :</p>
       <table class="legal-table">
         <tr>
-          <th>Finalité</th>
-          <th>Description</th>
+          <th data-i18n="pc.s3.table.fin">Finalité</th>
+          <th data-i18n="pc.s3.table.desc">Description</th>
         </tr>
         <tr>
-          <td>Traitement des demandes de devis</td>
-          <td>Analyse de votre demande et élaboration d'une offre commerciale personnalisée.</td>
+          <td data-i18n="pc.s3.row.devis.label">Traitement des demandes de devis</td>
+          <td data-i18n="pc.s3.row.devis.val">Analyse de votre demande et élaboration d'une offre commerciale personnalisée.</td>
         </tr>
         <tr>
-          <td>Relation commerciale</td>
-          <td>Suivi des prospects, gestion des commandes, facturation et service après-vente.</td>
+          <td data-i18n="pc.s3.row.relation.label">Relation commerciale</td>
+          <td data-i18n="pc.s3.row.relation.val">Suivi des prospects, gestion des commandes, facturation et service après-vente.</td>
         </tr>
         <tr>
-          <td>Communication</td>
-          <td>Réponse à vos demandes d'information via le formulaire de contact ou par e-mail.</td>
+          <td data-i18n="pc.s3.row.communication.label">Communication</td>
+          <td data-i18n="pc.s3.row.communication.val">Réponse à vos demandes d'information via le formulaire de contact ou par e-mail.</td>
         </tr>
         <tr>
-          <td>Amélioration du service</td>
-          <td>Analyse de l'utilisation du site pour améliorer l'expérience utilisateur.</td>
+          <td data-i18n="pc.s3.row.amelioration.label">Amélioration du service</td>
+          <td data-i18n="pc.s3.row.amelioration.val">Analyse de l'utilisation du site pour améliorer l'expérience utilisateur.</td>
         </tr>
         <tr>
-          <td>Obligations légales</td>
-          <td>Conservation des documents commerciaux et douaniers conformément aux exigences légales.</td>
+          <td data-i18n="pc.s3.row.obligations.label">Obligations légales</td>
+          <td data-i18n="pc.s3.row.obligations.val">Conservation des documents commerciaux et douaniers conformément aux exigences légales.</td>
         </tr>
       </table>
     </div>
@@ -463,14 +490,14 @@ nav {
     <div class="legal-section" id="s4">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 04</span>
-        <h2 class="legal-section-title">Base légale du traitement</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s4.title">Base légale du traitement</h2>
       </div>
-      <p class="legal-text">Le traitement de vos données personnelles repose sur les bases légales suivantes :</p>
+      <p class="legal-text" data-i18n="pc.s4.p1">Le traitement de vos données personnelles repose sur les bases légales suivantes :</p>
       <ul class="legal-list">
-        <li><strong>Exécution d'un contrat :</strong> lorsque vous sollicitez un devis ou passez une commande, le traitement est nécessaire à l'exécution de notre relation contractuelle.</li>
-        <li><strong>Intérêt légitime :</strong> pour améliorer nos services, assurer la sécurité de notre site et mener des actions commerciales B2B proportionnées.</li>
-        <li><strong>Obligation légale :</strong> pour satisfaire aux exigences du droit commercial, douanier et fiscal applicable au Cameroun et dans les pays partenaires.</li>
-        <li><strong>Consentement :</strong> pour tout traitement non couvert par les bases précédentes, notamment l'envoi de communications marketing (si applicable).</li>
+        <li data-i18n-html="pc.s4.li.contrat"><strong>Exécution d'un contrat :</strong> lorsque vous sollicitez un devis ou passez une commande, le traitement est nécessaire à l'exécution de notre relation contractuelle.</li>
+        <li data-i18n-html="pc.s4.li.interet"><strong>Intérêt légitime :</strong> pour améliorer nos services, assurer la sécurité de notre site et mener des actions commerciales B2B proportionnées.</li>
+        <li data-i18n-html="pc.s4.li.obligation"><strong>Obligation légale :</strong> pour satisfaire aux exigences du droit commercial, douanier et fiscal applicable au Cameroun et dans les pays partenaires.</li>
+        <li data-i18n-html="pc.s4.li.consentement"><strong>Consentement :</strong> pour tout traitement non couvert par les bases précédentes, notamment l'envoi de communications marketing (si applicable).</li>
       </ul>
     </div>
 
@@ -478,36 +505,36 @@ nav {
     <div class="legal-section" id="s5">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 05</span>
-        <h2 class="legal-section-title">Durée de conservation</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s5.title">Durée de conservation</h2>
       </div>
-      <p class="legal-text">Vos données sont conservées pour la durée strictement nécessaire aux finalités décrites :</p>
+      <p class="legal-text" data-i18n="pc.s5.p1">Vos données sont conservées pour la durée strictement nécessaire aux finalités décrites :</p>
       <table class="legal-table">
         <tr>
-          <th>Type de données</th>
-          <th>Durée de conservation</th>
+          <th data-i18n="pc.s5.table.type">Type de données</th>
+          <th data-i18n="pc.s5.table.duree">Durée de conservation</th>
         </tr>
         <tr>
-          <td>Demandes de devis (prospects)</td>
-          <td>3 ans à compter du dernier contact</td>
+          <td data-i18n="pc.s5.row.devis.label">Demandes de devis (prospects)</td>
+          <td data-i18n="pc.s5.row.devis.val">3 ans à compter du dernier contact</td>
         </tr>
         <tr>
-          <td>Données clients actifs</td>
-          <td>Durée de la relation commerciale + 5 ans</td>
+          <td data-i18n="pc.s5.row.clients.label">Données clients actifs</td>
+          <td data-i18n="pc.s5.row.clients.val">Durée de la relation commerciale + 5 ans</td>
         </tr>
         <tr>
-          <td>Documents comptables et douaniers</td>
-          <td>10 ans (obligation légale)</td>
+          <td data-i18n="pc.s5.row.compta.label">Documents comptables et douaniers</td>
+          <td data-i18n="pc.s5.row.compta.val">10 ans (obligation légale)</td>
         </tr>
         <tr>
-          <td>Données de navigation (cookies)</td>
-          <td>13 mois maximum</td>
+          <td data-i18n="pc.s5.row.cookies.label">Données de navigation (cookies)</td>
+          <td data-i18n="pc.s5.row.cookies.val">13 mois maximum</td>
         </tr>
         <tr>
-          <td>Messages de contact</td>
-          <td>2 ans</td>
+          <td data-i18n="pc.s5.row.messages.label">Messages de contact</td>
+          <td data-i18n="pc.s5.row.messages.val">2 ans</td>
         </tr>
       </table>
-      <p class="legal-text" style="margin-top:1rem">
+      <p class="legal-text" style="margin-top:1rem" data-i18n="pc.s5.p2">
         À l'expiration de ces délais, vos données sont supprimées ou anonymisées de manière sécurisée.
       </p>
     </div>
@@ -516,15 +543,15 @@ nav {
     <div class="legal-section" id="s6">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 06</span>
-        <h2 class="legal-section-title">Transferts internationaux de données</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s6.title">Transferts internationaux de données</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s6.p1">
         Dans le cadre de nos activités d'import-export couvrant plusieurs continents, vos données peuvent être traitées dans des pays tiers au Cameroun, notamment en Europe, en Asie et en Amérique du Nord.
       </p>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s6.p2">
         Tout transfert international est encadré par des garanties appropriées, telles que des clauses contractuelles types ou des mécanismes de certification reconnus, afin d'assurer un niveau de protection équivalent à celui applicable au Cameroun.
       </p>
-      <div class="legal-highlight">
+      <div class="legal-highlight" data-i18n="pc.s6.highlight">
         [À COMPLÉTER — Préciser les pays de destination des données et les mécanismes de transfert utilisés, ex. : clauses contractuelles standard UE, etc.]
       </div>
     </div>
@@ -533,16 +560,16 @@ nav {
     <div class="legal-section" id="s7">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 07</span>
-        <h2 class="legal-section-title">Partage et destinataires des données</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s7.title">Partage et destinataires des données</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s7.p1">
         Vos données personnelles ne sont ni vendues, ni louées à des tiers. Elles peuvent être communiquées aux catégories de destinataires suivantes, dans la limite des finalités définies :
       </p>
       <ul class="legal-list">
-        <li><strong>Prestataires techniques :</strong> hébergeur web, fournisseurs de solutions CRM et d'emailing (sous contrat de sous-traitance).</li>
-        <li><strong>Partenaires logistiques :</strong> transitaires, commissionnaires en douane, transporteurs, dans le cadre de l'exécution de vos commandes.</li>
-        <li><strong>Autorités compétentes :</strong> administrations douanières, fiscales ou judiciaires, sur requête légalement fondée.</li>
-        <li><strong>Conseillers professionnels :</strong> avocats, experts-comptables, dans le cadre de la gestion de notre activité.</li>
+        <li data-i18n-html="pc.s7.li.presta"><strong>Prestataires techniques :</strong> hébergeur web, fournisseurs de solutions CRM et d'emailing (sous contrat de sous-traitance).</li>
+        <li data-i18n-html="pc.s7.li.logistique"><strong>Partenaires logistiques :</strong> transitaires, commissionnaires en douane, transporteurs, dans le cadre de l'exécution de vos commandes.</li>
+        <li data-i18n-html="pc.s7.li.autorites"><strong>Autorités compétentes :</strong> administrations douanières, fiscales ou judiciaires, sur requête légalement fondée.</li>
+        <li data-i18n-html="pc.s7.li.conseillers"><strong>Conseillers professionnels :</strong> avocats, experts-comptables, dans le cadre de la gestion de notre activité.</li>
       </ul>
     </div>
 
@@ -550,28 +577,28 @@ nav {
     <div class="legal-section" id="s8">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 08</span>
-        <h2 class="legal-section-title">Vos droits</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s8.title">Vos droits</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s8.p1">
         Conformément à la réglementation applicable, vous disposez des droits suivants concernant vos données personnelles :
       </p>
       <ul class="legal-list">
-        <li><strong>Droit d'accès :</strong> obtenir une copie des données que nous détenons vous concernant.</li>
-        <li><strong>Droit de rectification :</strong> faire corriger des données inexactes ou incomplètes.</li>
-        <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données, sous réserve de nos obligations légales de conservation.</li>
-        <li><strong>Droit à la limitation :</strong> demander la suspension temporaire du traitement de vos données.</li>
-        <li><strong>Droit à la portabilité :</strong> recevoir vos données dans un format structuré et lisible par machine.</li>
-        <li><strong>Droit d'opposition :</strong> vous opposer à certains traitements fondés sur l'intérêt légitime.</li>
-        <li><strong>Droit de retrait du consentement :</strong> retirer votre consentement à tout moment, sans affecter la licéité des traitements antérieurs.</li>
+        <li data-i18n-html="pc.s8.li.acces"><strong>Droit d'accès :</strong> obtenir une copie des données que nous détenons vous concernant.</li>
+        <li data-i18n-html="pc.s8.li.rectification"><strong>Droit de rectification :</strong> faire corriger des données inexactes ou incomplètes.</li>
+        <li data-i18n-html="pc.s8.li.effacement"><strong>Droit à l'effacement :</strong> demander la suppression de vos données, sous réserve de nos obligations légales de conservation.</li>
+        <li data-i18n-html="pc.s8.li.limitation"><strong>Droit à la limitation :</strong> demander la suspension temporaire du traitement de vos données.</li>
+        <li data-i18n-html="pc.s8.li.portabilite"><strong>Droit à la portabilité :</strong> recevoir vos données dans un format structuré et lisible par machine.</li>
+        <li data-i18n-html="pc.s8.li.opposition"><strong>Droit d'opposition :</strong> vous opposer à certains traitements fondés sur l'intérêt légitime.</li>
+        <li data-i18n-html="pc.s8.li.retrait"><strong>Droit de retrait du consentement :</strong> retirer votre consentement à tout moment, sans affecter la licéité des traitements antérieurs.</li>
       </ul>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s8.p2">
         Pour exercer ces droits, adressez votre demande par écrit à l'adresse suivante :
       </p>
       <div class="legal-contact-box">
         <span class="legal-contact-icon"><span class="material-symbols-outlined">mail</span></span>
         <div>
-          <div class="legal-contact-title">Contact Données Personnelles</div>
-          <div class="legal-contact-text">
+          <div class="legal-contact-title" data-i18n="pc.s8.contact.title">Contact Données Personnelles</div>
+          <div class="legal-contact-text" data-i18n-html="pc.s8.contact.text">
             <strong>KTIS Group — Responsable Protection des Données</strong><br>
             Email : <a href="mailto:contact@ktisgroup.com">contact@ktisgroup.com</a><br>
             Téléphone : +237 682 670 066<br>
@@ -586,37 +613,37 @@ nav {
     <div class="legal-section" id="s9">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 09</span>
-        <h2 class="legal-section-title">Politique relative aux cookies</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s9.title">Politique relative aux cookies</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s9.p1">
         Notre site peut utiliser des cookies et technologies similaires pour améliorer votre expérience de navigation et analyser l'audience du site.
       </p>
       <table class="legal-table">
         <tr>
-          <th>Type de cookie</th>
-          <th>Finalité</th>
-          <th>Durée</th>
+          <th data-i18n="pc.s9.table.type">Type de cookie</th>
+          <th data-i18n="pc.s9.table.fin">Finalité</th>
+          <th data-i18n="pc.s9.table.duree">Durée</th>
         </tr>
         <tr>
-          <td>Cookies essentiels</td>
-          <td>Fonctionnement du site (navigation, formulaires)</td>
-          <td>Session</td>
+          <td data-i18n="pc.s9.row.essentiels.type">Cookies essentiels</td>
+          <td data-i18n="pc.s9.row.essentiels.fin">Fonctionnement du site (navigation, formulaires)</td>
+          <td data-i18n="pc.s9.row.essentiels.duree">Session</td>
         </tr>
         <tr>
-          <td>Cookies analytiques</td>
-          <td>Mesure d'audience et statistiques de visite</td>
-          <td>13 mois</td>
+          <td data-i18n="pc.s9.row.analytiques.type">Cookies analytiques</td>
+          <td data-i18n="pc.s9.row.analytiques.fin">Mesure d'audience et statistiques de visite</td>
+          <td data-i18n="pc.s9.row.analytiques.duree">13 mois</td>
         </tr>
         <tr>
-          <td>Cookies de préférence</td>
-          <td>Mémorisation de vos paramètres de navigation</td>
-          <td>12 mois</td>
+          <td data-i18n="pc.s9.row.preference.type">Cookies de préférence</td>
+          <td data-i18n="pc.s9.row.preference.fin">Mémorisation de vos paramètres de navigation</td>
+          <td data-i18n="pc.s9.row.preference.duree">12 mois</td>
         </tr>
       </table>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s9.p2">
         Vous pouvez à tout moment paramétrer ou désactiver les cookies non essentiels via les paramètres de votre navigateur. Le refus de certains cookies peut limiter certaines fonctionnalités du site.
       </p>
-      <div class="legal-highlight">
+      <div class="legal-highlight" data-i18n="pc.s9.highlight">
         [À COMPLÉTER — Si un outil de gestion du consentement aux cookies (CMP) est utilisé, le décrire ici.]
       </div>
     </div>
@@ -625,19 +652,19 @@ nav {
     <div class="legal-section" id="s10">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 10</span>
-        <h2 class="legal-section-title">Sécurité des données</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s10.title">Sécurité des données</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s10.p1">
         KTIS Group met en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, perte, destruction ou divulgation accidentelle. Ces mesures comprennent notamment :
       </p>
       <ul class="legal-list">
-        <li>Chiffrement des communications (protocole HTTPS/TLS).</li>
-        <li>Contrôle strict des accès internes aux données personnelles.</li>
-        <li>Formation et sensibilisation de nos collaborateurs à la protection des données.</li>
-        <li>Procédures de gestion des incidents de sécurité.</li>
-        <li>[À COMPLÉTER — Autres mesures spécifiques mises en place.]</li>
+        <li data-i18n="pc.s10.li.https">Chiffrement des communications (protocole HTTPS/TLS).</li>
+        <li data-i18n="pc.s10.li.acces">Contrôle strict des accès internes aux données personnelles.</li>
+        <li data-i18n="pc.s10.li.formation">Formation et sensibilisation de nos collaborateurs à la protection des données.</li>
+        <li data-i18n="pc.s10.li.incidents">Procédures de gestion des incidents de sécurité.</li>
+        <li data-i18n="pc.s10.li.autres">[À COMPLÉTER — Autres mesures spécifiques mises en place.]</li>
       </ul>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s10.p2">
         En cas de violation de données susceptible d'engendrer un risque pour vos droits et libertés, nous nous engageons à vous en informer dans les meilleurs délais conformément aux obligations légales applicables.
       </p>
     </div>
@@ -646,15 +673,15 @@ nav {
     <div class="legal-section" id="s11">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 11</span>
-        <h2 class="legal-section-title">Modifications de la politique</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s11.title">Modifications de la politique</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s11.p1">
         KTIS Group se réserve le droit de modifier la présente Politique de Confidentialité à tout moment, notamment pour se conformer à l'évolution de la réglementation applicable ou à nos pratiques commerciales.
       </p>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s11.p2">
         En cas de modification substantielle, nous vous en informerons par e-mail (si vous êtes client) ou par un avis visible sur notre site. La date de la dernière mise à jour est indiquée en haut du présent document.
       </p>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s11.p3">
         Nous vous encourageons à consulter régulièrement cette page pour rester informé(e) de la manière dont nous protégeons vos informations.
       </p>
     </div>
@@ -663,16 +690,16 @@ nav {
     <div class="legal-section" id="s12">
       <div class="legal-section-header">
         <span class="legal-section-num">Art. 12</span>
-        <h2 class="legal-section-title">Contact &amp; Réclamations</h2>
+        <h2 class="legal-section-title" data-i18n="pc.s12.title">Contact &amp; Réclamations</h2>
       </div>
-      <p class="legal-text">
+      <p class="legal-text" data-i18n="pc.s12.p1">
         Pour toute question relative à la présente politique ou à l'exercice de vos droits, vous pouvez nous contacter :
       </p>
       <div class="legal-contact-box">
         <span class="legal-contact-icon"><span class="material-symbols-outlined">contact_support</span></span>
         <div>
-          <div class="legal-contact-title">KTIS Group</div>
-          <div class="legal-contact-text">
+          <div class="legal-contact-title" data-i18n="pc.s12.contact.title">KTIS Group</div>
+          <div class="legal-contact-text" data-i18n-html="pc.s12.contact.text">
             Email : <a href="mailto:contact@ktisgroup.com">contact@ktisgroup.com</a><br>
             Téléphone : +237 682 670 066<br>
             Horaires : Lundi au Vendredi, 08h00 – 17h00<br><br>
@@ -689,11 +716,11 @@ nav {
 <!-- FOOTER -->
 <footer class="legal-footer">
   <div class="legal-footer-inner">
-    <div class="legal-footer-copy">© 2026 KTIS Group. Tous droits réservés.</div>
+    <div class="legal-footer-copy" data-i18n="legal.footer.copy">© 2026 KTIS Group. Tous droits réservés.</div>
     <div class="legal-footer-links">
-      <a href="index.html">Accueil</a>
-      <a href="mentions-legales.html">Mentions légales</a>
-      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      <a href="index.html" data-i18n="legal.footer.home">Accueil</a>
+      <a href="mentions-legales.html" data-i18n="legal.footer.legal">Mentions légales</a>
+      <a href="politique-confidentialite.html" data-i18n="legal.footer.privacy">Politique de confidentialité</a>
     </div>
   </div>
 </footer>

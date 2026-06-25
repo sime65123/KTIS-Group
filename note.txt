@@ -1,0 +1,3 @@
+lorsque je change la langue pour mettre en anglais je constate que c'est seulement la premiere section, la section contact et le footer qui se traduisent, a partir de Nos services rien ne traduit aucune section ne se traduit et c'est aussii pareil dans les pages politique de confidentialité et mention legales c'est juste l'entete, le sommaire et le message qui en couleur orange qui se traduisent, le contenu de ces 2 pages ne se traduisent pas il faut les traduire meme si il y a 'a completer' car il y a les anglophones qui consultent aussi le site
+tout doit etre traduit chaque texte chaque section tout
+et pour la langue anglais c'est mieux d'afficher plutot EN au lieu de GB 
