@@ -73,23 +73,26 @@ body, nav, .legal-toc, .legal-highlight, .legal-table th, .legal-table td,
 
 /* ── SÉLECTEUR DE LANGUE ── */
 .lang-switcher{
-  display:flex;align-items:center;gap:2px;flex-shrink:0;
+  display:flex;align-items:stretch;gap:0;flex-shrink:0;
   border:1px solid var(--border2);background:var(--surface);
   overflow:hidden;
 }
 .lang-btn{
-  width:38px;height:38px;border:none;background:transparent;
+  min-width:38px;height:38px;border:none;background:transparent;
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:1.2rem;transition:all .2s;
-  opacity:.45;padding:0;
-}
-.lang-btn.lang-text{
+  cursor:pointer;transition:all .2s;
+  opacity:.45;padding:0 .5rem;
   font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;font-weight:500;
+  color:var(--text2);line-height:1;
 }
-.lang-btn:hover{ opacity:.85;background:var(--surface2); }
+.lang-btn:hover{ opacity:.85;background:var(--surface2);color:var(--text); }
 .lang-btn.lang-active{
-  opacity:1;background:rgba(26,143,255,.12);
+  opacity:1;color:var(--electric2);background:rgba(26,143,255,.12);
   box-shadow:inset 0 0 0 1px rgba(26,143,255,.3);
+}
+[data-theme="light"] .lang-btn.lang-active{
+  background:rgba(0,102,214,.1);
+  box-shadow:inset 0 0 0 1px rgba(0,102,214,.25);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -320,8 +323,8 @@ nav {
     </a>
     <div style="display:flex;align-items:center;gap:.75rem">
       <div class="lang-switcher">
-        <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')" title="Français">🇫🇷</button>
-        <button class="lang-btn lang-text" data-lang="en" onclick="switchLang('en')" title="English">EN</button>
+        <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')" title="Français">FR</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLang('en')" title="English">EN</button>
       </div>
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-aria="nav.aria.theme" aria-label="Changer de thème">
         <span class="material-symbols-outlined icon-moon">dark_mode</span>

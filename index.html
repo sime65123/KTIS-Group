@@ -70,23 +70,26 @@ body, nav, .modal-devis, .stat-bar-item, .solution-card, .produit-card,
 
 /* ── SÉLECTEUR DE LANGUE ── */
 .lang-switcher{
-  display:flex;align-items:center;gap:2px;flex-shrink:0;
+  display:flex;align-items:stretch;gap:0;flex-shrink:0;
   border:1px solid var(--border2);background:var(--surface);
   overflow:hidden;
 }
 .lang-btn{
-  width:38px;height:38px;border:none;background:transparent;
+  min-width:38px;height:38px;border:none;background:transparent;
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:1.2rem;transition:all .2s;
-  opacity:.45;padding:0;
-}
-.lang-btn.lang-text{
+  cursor:pointer;transition:all .2s;
+  opacity:.45;padding:0 .5rem;
   font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;font-weight:500;
+  color:var(--text2);line-height:1;
 }
-.lang-btn:hover{ opacity:.85;background:var(--surface2); }
+.lang-btn:hover{ opacity:.85;background:var(--surface2);color:var(--text); }
 .lang-btn.lang-active{
-  opacity:1;background:rgba(26,143,255,.12);
+  opacity:1;color:var(--electric2);background:rgba(26,143,255,.12);
   box-shadow:inset 0 0 0 1px rgba(26,143,255,.3);
+}
+[data-theme="light"] .lang-btn.lang-active{
+  background:rgba(0,102,214,.1);
+  box-shadow:inset 0 0 0 1px rgba(0,102,214,.25);
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -339,8 +342,21 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
 #scrollTop:hover .material-symbols-outlined{color:var(--electric2);}
 
 /* ── NOTIFICATION ── */
-.notif{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface);border:1px solid var(--electric);padding:.75rem 1.5rem;display:flex;align-items:center;gap:.75rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;color:var(--electric2);z-index:400;transition:transform .4s ease;}
-.notif.show{transform:translateX(-50%) translateY(0);}
+.notif{
+  position:fixed;bottom:2rem;left:50%;
+  transform:translate(-50%,80px);
+  background:var(--surface);border:1px solid var(--electric);
+  padding:.75rem 1.5rem;display:flex;align-items:center;gap:.75rem;
+  font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;
+  color:var(--electric2);z-index:400;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease,transform .4s ease,visibility .4s ease;
+  visibility:hidden;
+}
+.notif.show{
+  transform:translate(-50%,0);
+  opacity:1;pointer-events:auto;visibility:visible;
+}
 .notif.success{border-color:var(--teal);color:var(--teal);}
 
 /* ════════════════════════════════════════
@@ -448,6 +464,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
   .modal-header{padding:1.25rem 1.25rem 1rem;}
   .modal-footer{padding:1rem 1.25rem 1.5rem;flex-direction:column;align-items:stretch;}
   .btn-devis-submit{justify-content:center;}
+  .notif{left:.75rem;right:.75rem;width:auto;transform:translateY(80px);}
+  .notif.show{transform:translateY(0);}
 }
 @media (max-width:480px){
   section{padding:4rem 0;}
@@ -507,8 +525,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
   .modal-body{padding:1rem;max-height:calc(100vh - 160px);}
   .modal-footer{padding:.85rem 1rem 1.25rem;}
   .modal-reassurance{font-size:.6rem;}
-  .notif{left:.75rem;right:.75rem;transform:translateY(80px);width:auto;}
-  .notif.show{transform:translateY(0);}
 }
 @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 </style>
@@ -672,8 +688,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
     </div>
     <div style="display:flex;align-items:center;gap:.5rem">
       <div class="lang-switcher" data-i18n-aria="nav.aria.lang" aria-label="Changer la langue">
-        <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')" title="Français">🇫🇷</button>
-        <button class="lang-btn lang-text" data-lang="en" onclick="switchLang('en')" title="English">EN</button>
+        <button class="lang-btn" data-lang="fr" onclick="switchLang('fr')" title="Français">FR</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLang('en')" title="English">EN</button>
       </div>
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-aria="nav.aria.theme" aria-label="Changer de thème">
         <span class="material-symbols-outlined icon-moon">dark_mode</span>
@@ -1263,8 +1279,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
         <img src="logo.png" alt="KTIS Group" style="height:60px;width:auto;margin-bottom:1rem"/>
         <p data-i18n="footer.brand.desc">Intégrateur commercial et fournisseur de solutions d'import-export, distribution de produits variés et prestations de services commerciales.</p>
         <div class="footer-socials">
-          <a href="#" class="social-btn" onclick="showNotif(KTIS_i18n.t('footer.notif.linkedin'))"><span class="material-symbols-outlined" style="font-size:.9rem">link</span></a>
-          <a href="#" class="social-btn" onclick="showNotif(KTIS_i18n.t('footer.notif.twitter'))"><span class="material-symbols-outlined" style="font-size:.9rem">share</span></a>
+          <a href="#" class="social-btn" onclick="showNotif(KTIS_i18n.t('footer.notif.linkedin'));return false;"><span class="material-symbols-outlined" style="font-size:.9rem">link</span></a>
+          <a href="#" class="social-btn" onclick="showNotif(KTIS_i18n.t('footer.notif.twitter'));return false;"><span class="material-symbols-outlined" style="font-size:.9rem">share</span></a>
           <a href="#" class="social-btn" onclick="scrollToSection('contact')"><span class="material-symbols-outlined" style="font-size:.9rem">mail</span></a>
         </div>
         <div class="footer-certs">
@@ -1307,7 +1323,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 0 2
       <div class="footer-legal">
         <a href="politique-confidentialite.html" data-i18n="footer.link.privacy">Politique de confidentialité</a>
         <a href="mentions-legales.html" data-i18n="footer.link.legal">Mentions légales</a>
-        <a href="#" onclick="showNotif(KTIS_i18n.t('footer.notif.env'))" data-i18n="footer.link.env">Conformité environnementale</a>
+        <a href="#" onclick="showNotif(KTIS_i18n.t('footer.notif.env'));return false;" data-i18n="footer.link.env">Conformité environnementale</a>
       </div>
     </div>
   </div>
@@ -1538,8 +1554,8 @@ let notifTimeout;
 function showNotif(msg, success = false) {
   const n = document.getElementById('notif');
   document.getElementById('notif-text').textContent = msg;
-  n.className = 'notif show' + (success ? ' success' : '');
   clearTimeout(notifTimeout);
+  n.className = 'notif show' + (success ? ' success' : '');
   notifTimeout = setTimeout(() => n.classList.remove('show'), 4000);
 }
 </script>
